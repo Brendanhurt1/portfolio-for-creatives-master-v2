@@ -4,7 +4,6 @@
   const MUSIC_SOURCE = "./assets/music/synth-music.mp3";
   const SWAP_SOURCE = "./assets/music/swap-noise.mp3";
   const STATE_KEY = "brendan-hurt-audio-state";
-  const SOUND_KEY = "brendan-hurt-sound-enabled";
   const MUSIC_VOLUME = 0.14;
   const FADE_DURATION = 850;
   const tracks = [new Audio(MUSIC_SOURCE), new Audio(MUSIC_SOURCE)];
@@ -26,26 +25,6 @@
       return JSON.parse(sessionStorage.getItem(STATE_KEY) || "null");
     } catch {
       return null;
-    }
-  };
-
-  const readSoundPreference = () => {
-    try {
-      const savedPreference = localStorage.getItem(SOUND_KEY);
-      return savedPreference === "true";
-    } catch {
-      return false;
-    }
-  };
-
-  const shouldStartSoundOff = () =>
-    window.matchMedia("(max-width: 600px)").matches;
-
-  const saveSoundPreference = () => {
-    try {
-      localStorage.setItem(SOUND_KEY, String(soundEnabled));
-    } catch {
-      // Sound control remains functional when browser storage is unavailable.
     }
   };
 
@@ -152,7 +131,6 @@
 
   const setSoundEnabled = (enabled) => {
     soundEnabled = enabled;
-    saveSoundPreference();
 
     if (soundEnabled) {
       startMusic(safeReadState()?.time || 0);
@@ -203,16 +181,12 @@
     });
   };
 
-  // Phones always begin muted, avoiding a saved desktop preference attempting
-  // autoplay before the visitor has interacted with the sound control.
-  soundEnabled = shouldStartSoundOff() ? false : readSoundPreference();
+  // Audio is always opt-in: playback begins only after the visitor enables it.
+  soundEnabled = false;
   window.siteAudio = { playSwap, startMusic, saveState, setSoundEnabled };
   window.setInterval(crossfadeLoop, 150);
   window.setInterval(saveState, 1000);
   window.addEventListener("pagehide", saveState);
-
-  const savedState = safeReadState();
-  if (soundEnabled && savedState?.playing) startMusic(savedState.time);
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => {
