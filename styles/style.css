@@ -3648,7 +3648,6 @@ html[data-theme="coral"] .home-page .portfolio .project-card-stack .work-page-gr
 
 .home-page .portfolio .project-card-stack .work-page-grid-item.is-active:hover .project-thumbnail-overlay {
   transform: scale(1.13);
-  opacity: 0;
 }
 
 .home-page .portfolio .project-card-stack .work-page-grid-item.is-previewing .project-thumbnail-overlay {
