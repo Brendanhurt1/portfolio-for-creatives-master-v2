@@ -4,21 +4,23 @@
 
   const savedTheme = () => {
     try {
-      return window.localStorage.getItem(themeKey) === "coral" ? "coral" : "brown";
+      // Accept the previous names so existing visitors retain their chosen theme.
+      const storedTheme = window.localStorage.getItem(themeKey);
+      return storedTheme === "light" || storedTheme === "coral" ? "light" : "dark";
     } catch {
-      return "brown";
+      return "dark";
     }
   };
 
   const applyTheme = (theme) => {
-    if (theme === "coral") root.dataset.theme = "coral";
+    if (theme === "light") root.dataset.theme = "light";
     else delete root.dataset.theme;
 
     document.querySelectorAll(".project-thumbnail-overlay").forEach((thumbnail) => {
       const defaultSource = thumbnail.dataset.defaultSource || thumbnail.getAttribute("src");
       if (!defaultSource) return;
       thumbnail.dataset.defaultSource = defaultSource;
-      const nextSource = theme === "coral" && thumbnail.dataset.themeAltSource
+      const nextSource = theme === "light" && thumbnail.dataset.themeAltSource
         ? thumbnail.dataset.themeAltSource
         : thumbnail.dataset.defaultSource;
       if (thumbnail.dataset.currentSource === nextSource) return;
@@ -41,14 +43,14 @@
     });
 
     document.querySelectorAll("[data-theme-main-src][data-theme-alt-src]").forEach((asset) => {
-      asset.src = theme === "coral" ? asset.dataset.themeAltSrc : asset.dataset.themeMainSrc;
+      asset.src = theme === "light" ? asset.dataset.themeAltSrc : asset.dataset.themeMainSrc;
     });
 
     const toggle = document.querySelector("#themeToggle");
     if (toggle) {
-      const isCoral = theme === "coral";
-      toggle.checked = isCoral;
-      toggle.setAttribute("aria-checked", String(isCoral));
+      const isLight = theme === "light";
+      toggle.checked = isLight;
+      toggle.setAttribute("aria-checked", String(isLight));
     }
 
     window.dispatchEvent(new CustomEvent("site-theme-change", { detail: { theme } }));
@@ -73,7 +75,7 @@
     };
 
     toggle.addEventListener("change", () => {
-      const theme = toggle.checked ? "coral" : "brown";
+      const theme = toggle.checked ? "light" : "dark";
       try {
         window.localStorage.setItem(themeKey, theme);
       } catch {
@@ -88,7 +90,9 @@
   };
 
   window.addEventListener("storage", (event) => {
-    if (event.key === themeKey) applyTheme(event.newValue === "coral" ? "coral" : "brown");
+    if (event.key === themeKey) {
+      applyTheme(event.newValue === "light" || event.newValue === "coral" ? "light" : "dark");
+    }
   });
 
   const initialisePageTheme = () => {

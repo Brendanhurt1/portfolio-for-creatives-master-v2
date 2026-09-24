@@ -352,7 +352,7 @@
         const hover = icon.dataset.hover;
 
         icon.addEventListener("mouseenter", () => {
-          if (document.documentElement.dataset.theme !== "coral") icon.src = hover;
+          if (document.documentElement.dataset.theme !== "light") icon.src = hover;
         });
         icon.addEventListener("mouseleave", () => (icon.src = original));
       });

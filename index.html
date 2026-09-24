@@ -72,11 +72,11 @@
       preserveAspectRatio="none"
       aria-hidden="true"
     >
-      <g class="ps3-ribbon-broad-waves" fill="none" stroke="#ffefe1">
+      <g class="ps3-ribbon-broad-waves" fill="none" stroke="var(--color-blue)">
         <path class="ps3-ribbon-wave ps3-ribbon-wave--wide" data-wave="0" opacity="0.045" stroke-width="44" />
         <path class="ps3-ribbon-wave ps3-ribbon-wave--wide" data-wave="1" opacity="0.028" stroke-width="68" />
       </g>
-      <g class="ps3-ribbon-waves" fill="none" stroke="#ffefe1">
+      <g class="ps3-ribbon-waves" fill="none" stroke="var(--color-blue)">
         <path class="ps3-ribbon-wave" data-wave="0" opacity="0.20" stroke-width="2.4" />
         <path class="ps3-ribbon-wave" data-wave="1" opacity="0.14" stroke-width="1.8" />
         <path class="ps3-ribbon-wave" data-wave="2" opacity="0.09" stroke-width="1.3" />
@@ -1241,6 +1241,10 @@
     </script>
     <script>
       (() => {
+        // Temporarily disabled. Set to true to restore homepage ribbons and particles.
+        const homepageAmbientEffectsEnabled = false;
+        if (!homepageAmbientEffectsEnabled) return;
+
         const backdrop = document.querySelector(".ps3-ribbon-background");
         if (!backdrop) return;
 
@@ -1271,7 +1275,7 @@
           };
 
           particle.setAttribute("r", `${0.75 + ((index * 13.17) % 1) * 1.65}`);
-          particle.setAttribute("fill", "#ffefe1");
+          particle.setAttribute("fill", "var(--color-blue)");
           particle.setAttribute("opacity", `${0.05 + ((index * 11.3) % 1) * 0.15}`);
           particleLayer.append(particle);
           return particleData;

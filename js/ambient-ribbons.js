@@ -1,4 +1,8 @@
 (() => {
+  // Temporarily disabled. Set to true to restore particles on secondary pages.
+  const ambientParticlesEnabled = false;
+  if (!ambientParticlesEnabled) return;
+
   const initialiseAmbientRibbons = () => {
     if (document.querySelector(".ps3-ribbon-background")) return;
 
@@ -27,7 +31,7 @@
       };
 
       particle.setAttribute("r", `${0.75 + ((index * 13.17) % 1) * 1.65}`);
-      particle.setAttribute("fill", "#ffefe1");
+      particle.setAttribute("fill", "var(--color-blue)");
       particle.setAttribute("opacity", `${0.05 + ((index * 11.3) % 1) * 0.15}`);
       particleLayer.append(particle);
       return particleData;
