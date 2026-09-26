@@ -2976,7 +2976,7 @@ html {
   bottom: -1.8rem;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--color-ink);
+  background: var(--color-bg);
   color: #fdf2e4;
   padding: 0.25rem 0.5rem;
   border-radius: 12px;
@@ -3343,7 +3343,7 @@ strong {
   --pill-font-size: 18.72px;
   overflow-x: hidden;
   overflow-x: clip;
-  background: var(--color-ink);
+  background: var(--color-accent-primary);
 }
 
 .home-page .hero {
@@ -3588,7 +3588,7 @@ strong {
   overflow: visible;
   border: 0;
   border-radius: 0.3rem;
-  background: var(--color-bg);
+  background: var(--color-ink);
   box-shadow: 0 1.25rem 2.2rem rgba(var(--color-ink-rgb), 0.2);
   cursor: grab;
   transform: translate3d(
@@ -3625,7 +3625,7 @@ strong {
   margin: 0;
   overflow: hidden;
   border-radius: inherit;
-  background: var(--color-accent-primary);
+  background: var(--color-ink);
 }
 
 .home-page .portfolio .project-card-stack .work-page-grid-item figure img {
@@ -4372,6 +4372,21 @@ body.home-page.secondary-page :not(.site-navigation):not(.site-navigation *) {
   background-color: transparent !important;
 }
 
+/* Give the fixed ambience its own layer so it remains visible through translucent carousel states. */
+body.home-page {
+  position: relative;
+  isolation: isolate;
+}
+
+body.home-page > .hero,
+body.home-page > .main-work-section,
+body.home-page > .tag-scroll-section,
+body.home-page > .footer-global,
+body.home-page > .bottomMenu {
+  position: relative;
+  z-index: 1;
+}
+
 /* Preserve the project scrollbar over the ambience without obscuring the ribbons. */
 .secondary-page.project-page:not(.more-of-my-work) .scroll-track {
   --scroll-indicator-inset: 0.35rem;
@@ -4397,7 +4412,7 @@ body.home-page.secondary-page :not(.site-navigation):not(.site-navigation *) {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: -1;
+  z-index: 0;
   width: 100vw;
   height: 100vh;
   overflow: visible;
@@ -4406,12 +4421,8 @@ body.home-page.secondary-page :not(.site-navigation):not(.site-navigation *) {
 }
 
 .ps3-ribbon-waves {
-  filter: drop-shadow(0 0 0.65rem rgba(var(--color-blue-rgb), 0.11))
-    drop-shadow(0 0 1.5rem rgba(var(--color-blue-rgb), 0.045));
-}
-
-.ps3-ribbon-wave--wide {
-  filter: blur(0.25px);
+  /* Keep the #6186ff lines crisp; restraint comes from their line weight, not opacity. */
+  filter: none;
 }
 
 /* Keep the fixed ambience behind More Of My Work's scrolling image gallery. */
