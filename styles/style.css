@@ -3398,6 +3398,11 @@ strong {
   white-space: nowrap;
 }
 
+.home-page .tag-scroll-section .tag {
+  background-color: var(--color-blue);
+  color: var(--color-cream) !important;
+}
+
 .home-page .site-navigation .nav-branding-item {
   text-decoration: none;
   transition: background-color 500ms ease, color 500ms ease;
@@ -5191,15 +5196,8 @@ html:not([data-theme="light"]) .theme-switch:hover .theme-switch-track {
   display: flex;
   width: 100%;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 1rem;
-}
-
-.home-page .hero-headline-wrapper .theme-switcher {
-  position: relative;
-  flex: 0 0 auto;
-  width: fit-content;
-  margin: 0;
 }
 
 @media (max-width: 767px) {
@@ -5212,13 +5210,7 @@ html:not([data-theme="light"]) .theme-switch:hover .theme-switch-track {
     display: flex;
     width: 100%;
     align-items: center;
-    justify-content: space-between;
-  }
-
-  .home-page .hero-headline-wrapper .theme-switcher {
-    position: relative;
-    width: fit-content;
-    margin: 0;
+    justify-content: flex-end;
   }
 }
 
@@ -5226,9 +5218,7 @@ html:not([data-theme="light"]) .theme-switch:hover .theme-switch-track {
   .home-page .hero-headline-wrapper {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
-    grid-template-areas:
-      "headline theme"
-      "contact .";
+    grid-template-areas: "headline contact";
     align-items: start;
     column-gap: clamp(1.5rem, 5vw, 5rem);
     row-gap: 1.5rem;
@@ -5241,15 +5231,7 @@ html:not([data-theme="light"]) .theme-switch:hover .theme-switch-track {
   }
 
   .home-page .hero-headline-wrapper .hero-actions {
-    display: contents;
-  }
-
-  .home-page .hero-headline-wrapper .hero-contact {
     grid-area: contact;
-  }
-
-  .home-page .hero-headline-wrapper .theme-switcher {
-    grid-area: theme;
     align-self: start;
   }
 }
@@ -5409,7 +5391,7 @@ html[data-theme="light"] .secondary-page.project-page:not(.more-of-my-work) .pro
 /* Editorial project layout: intro text with its first image, then full-width media rows. */
 body.project-page.secondary-page:not(.more-of-my-work) {
   --project-editorial-gutter: clamp(1.25rem, 4.5vw, 6rem);
-  --project-editorial-gap: clamp(1.25rem, 3vw, 4rem);
+  --project-editorial-gap: clamp(1rem, 2.5vw, 3rem);
   scrollbar-width: none;
 }
 
@@ -5451,6 +5433,19 @@ body.project-page.secondary-page:not(.more-of-my-work) .vimeo-gif-wrapper iframe
   max-width: 100%;
 }
 
+/* Rows own their spacing; media itself should never create an uneven trailing gap. */
+body.project-page.secondary-page:not(.more-of-my-work) .project-image-container img {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Miliano's project media uses a consistent green keyline. */
+body.project-1-milianos.project-page .project-details img {
+  box-sizing: border-box;
+  border: 4px solid #48bf64;
+  border-radius: 0.25rem;
+}
+
 body.project-page.secondary-page:not(.more-of-my-work) .project-description-one-column,
 body.project-page.secondary-page:not(.more-of-my-work) .project-description,
 body.project-page.secondary-page:not(.more-of-my-work) .animated-text-group {
@@ -5459,6 +5454,12 @@ body.project-page.secondary-page:not(.more-of-my-work) .animated-text-group {
   max-width: 44rem;
   margin: 0 0 1rem;
   padding: 0 !important;
+}
+
+/* Split image-and-copy rows share one exact top edge. */
+body.project-page.secondary-page:not(.more-of-my-work) .project-description-one-column,
+body.project-page.secondary-page:not(.more-of-my-work) .project-description-subtitle {
+  top: 0;
 }
 
 /* Keep each project introduction on one shared left edge. */
@@ -5472,8 +5473,42 @@ body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-t
   text-align: left;
 }
 
+/* Project titles are scaled 20% above the established responsive sizes. */
+body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-title {
+  font-size: 2.58rem;
+}
+
+@media (min-width: 1001px) and (max-width: 1400px) {
+  body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-title {
+    font-size: 2.193rem;
+  }
+}
+
+@media (min-width: 1401px) {
+  body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-title {
+    font-size: 3.6975rem;
+  }
+}
+
+/* Detail copy follows the same responsive body scale as the project intro. */
+@media (min-width: 1001px) and (max-width: 1400px) {
+  body.project-page.secondary-page:not(.more-of-my-work) .project-details .project-description,
+  body.project-page.secondary-page:not(.more-of-my-work) .project-details .project-description-one-column:not(.project-description-subtitle) {
+    font-size: 0.85rem;
+  }
+}
+
+@media (min-width: 1401px) {
+  body.project-page.secondary-page:not(.more-of-my-work) .project-details .project-description,
+  body.project-page.secondary-page:not(.more-of-my-work) .project-details .project-description-one-column:not(.project-description-subtitle) {
+    font-size: 1.02rem;
+  }
+}
+
 body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-tags {
   justify-content: flex-start;
+  column-gap: 0.625rem;
+  row-gap: 0.625rem;
   margin-top: 1.5rem !important;
   margin-right: 0 !important;
   margin-bottom: 0 !important;
@@ -5486,6 +5521,16 @@ body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-t
   outline: 0 !important;
   background-color: var(--color-blue) !important;
   color: var(--color-ink) !important;
+  padding: 9.6px;
+  font-size: 14.4px;
+  letter-spacing: 0.154em;
+}
+
+@media (min-width: 1001px) {
+  body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-tags .tag {
+    padding: 0.51rem 0.765rem;
+    font-size: 16.32px;
+  }
 }
 
 body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-tags::after {
@@ -5564,7 +5609,12 @@ body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-t
     align-items: start;
     gap: var(--project-editorial-gap);
     width: 100% !important;
-    margin: 0 0 var(--project-editorial-gap) !important;
+    margin: 0 !important;
+  }
+
+  /* Keep paired media aligned by height while retaining each image's natural width ratio. */
+  body.project-page.secondary-page:not(.more-of-my-work) .project-image-container--equal-height-pair {
+    grid-template-columns: var(--media-pair-columns, repeat(2, minmax(0, 1fr)));
   }
 
   body.project-page.secondary-page:not(.more-of-my-work) .project-image-container > *,
