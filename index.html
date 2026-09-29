@@ -85,7 +85,7 @@
       </a>
       <ul class="nav-branding">
         <li>
-          <a href="mailto:brendanhurtt@gmail.com" class="nav-branding-item">Contact</a>
+          <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=brendanhurtt%40gmail.com" class="nav-branding-item" target="_blank" rel="noopener noreferrer">Contact</a>
         </li>
         <li>
           <a href="more-of-my-work.html" class="nav-branding-item">More Of My Work</a>
@@ -1488,17 +1488,17 @@
             aboutBounds?.left ??
             navigationBounds.right - Number.parseFloat(navigationStyles.paddingRight);
 
-          name.style.setProperty("--hero-name-left", `${Math.max(0, leftEdge)}px`);
-          name.parentElement?.style.setProperty("--hero-title-left", `${Math.max(0, leftEdge)}px`);
-          document.documentElement.style.setProperty("--homepage-content-left", `${Math.max(0, leftEdge)}px`);
-          name.style.setProperty(
-            "--hero-name-right",
-            `${Math.max(0, window.innerWidth - rightEdge)}px`
-          );
-          document.documentElement.style.setProperty(
-            "--homepage-content-right",
-            `${Math.max(0, window.innerWidth - rightEdge)}px`
-          );
+          // The rules themselves have visual weight, so use the same small optical
+          // outset as the project pages rather than aligning to their mathematical edge.
+          const opticalOutset = window.innerWidth > 700 ? 2 : 0;
+          const contentLeft = Math.max(0, leftEdge - opticalOutset);
+          const contentRight = Math.max(0, window.innerWidth - rightEdge - opticalOutset);
+
+          name.style.setProperty("--hero-name-left", `${contentLeft}px`);
+          name.parentElement?.style.setProperty("--hero-title-left", `${contentLeft}px`);
+          document.documentElement.style.setProperty("--homepage-content-left", `${contentLeft}px`);
+          name.style.setProperty("--hero-name-right", `${contentRight}px`);
+          document.documentElement.style.setProperty("--homepage-content-right", `${contentRight}px`);
 
           nameContent.style.fontSize = "";
           const baseSize = Number.parseFloat(window.getComputedStyle(nameContent).fontSize);

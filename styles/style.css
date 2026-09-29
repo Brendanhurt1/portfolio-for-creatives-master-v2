@@ -3420,7 +3420,7 @@ strong {
     var(--hero-name-right, clamp(1.5rem, 8vw, 8rem))
     clamp(0.25rem, 0.5vw, 0.5rem)
     var(--hero-name-left, clamp(1.5rem, 8vw, 8rem));
-  color: var(--color-cream);
+  color: var(--color-blue);
   line-height: 0.85;
 }
 
@@ -5451,11 +5451,11 @@ body.project-page.secondary-page:not(.more-of-my-work) .project-image-container 
   padding: 0 !important;
 }
 
-/* Miliano's project media uses a consistent green keyline. */
+/* Miliano's project media matches the homepage thumbnail keyline. */
 body.project-1-milianos.project-page .project-details img {
   box-sizing: border-box;
-  border: 4px solid #48bf64;
-  border-radius: 0.25rem;
+  border: 2px solid var(--color-cream);
+  border-radius: 0.6rem;
 }
 
 body.project-page.secondary-page:not(.more-of-my-work) .project-description-one-column,
@@ -5502,18 +5502,29 @@ body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-t
   }
 }
 
-/* Detail copy follows the same responsive body scale as the project intro. */
+/* Project-page body copy is consistently 10% larger at every breakpoint. */
+body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-description,
+body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-description-bold,
+body.project-page.secondary-page:not(.more-of-my-work) .project-details .project-description,
+body.project-page.secondary-page:not(.more-of-my-work) .project-details .project-description-one-column:not(.project-description-subtitle) {
+  font-size: 1.3475rem;
+}
+
 @media (min-width: 1001px) and (max-width: 1400px) {
+  body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-description,
+  body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-description-bold,
   body.project-page.secondary-page:not(.more-of-my-work) .project-details .project-description,
   body.project-page.secondary-page:not(.more-of-my-work) .project-details .project-description-one-column:not(.project-description-subtitle) {
-    font-size: 0.85rem;
+    font-size: 0.935rem;
   }
 }
 
 @media (min-width: 1401px) {
+  body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-description,
+  body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-description-bold,
   body.project-page.secondary-page:not(.more-of-my-work) .project-details .project-description,
   body.project-page.secondary-page:not(.more-of-my-work) .project-details .project-description-one-column:not(.project-description-subtitle) {
-    font-size: 1.02rem;
+    font-size: 1.122rem;
   }
 }
 
@@ -5901,6 +5912,7 @@ body.project-page.secondary-page:not(.more-of-my-work) .project-page-navigation 
 }
 
 .home-page .portfolio .project-card-stack.project-grid-enabled .work-page-grid-item figure {
+  position: relative;
   width: 100%;
   aspect-ratio: 16 / 10;
   margin: 0;
@@ -5917,26 +5929,36 @@ body.project-page.secondary-page:not(.more-of-my-work) .project-page-navigation 
 
 .home-page .portfolio .project-card-stack.project-grid-enabled .work-page-grid-item figure .project-thumbnail-overlay {
   opacity: 1;
-  transform: scale(1.015, 1.025) !important;
+  transform: scale(1.035) !important;
   transition: opacity 420ms cubic-bezier(0.16, 1, 0.3, 1),
     transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .home-page .portfolio .project-card-stack.project-grid-enabled .work-page-grid-item.is-previewing .project-thumbnail-overlay {
   opacity: 0;
-  transform: scale(1.05, 1.06) !important;
+  transform: scale(1.07) !important;
 }
 
 .home-page .portfolio .project-card-stack.project-grid-enabled .work-page-grid-item .project-hover-preview {
   z-index: 2;
   border-radius: inherit;
-  transform: scale(1.015, 1.025) !important;
+  transform: scale(1.035) !important;
   transition: opacity 420ms cubic-bezier(0.16, 1, 0.3, 1),
     transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .home-page .portfolio .project-card-stack.project-grid-enabled .work-page-grid-item.is-previewing .project-hover-preview {
-  transform: scale(1.05, 1.06) !important;
+  transform: scale(1.07) !important;
+}
+
+.home-page .portfolio .project-card-stack.project-grid-enabled .work-page-grid-item figure::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 var(--site-nav-rule-width, 2px) var(--color-blue);
+  pointer-events: none;
 }
 
 .home-page .portfolio .project-card-stack.project-grid-enabled .project-details-overlay.overlay {
@@ -6173,4 +6195,169 @@ body .site-navigation .project-nav-control {
   font-family: "Oswald", sans-serif;
   font-size: clamp(0.696rem, 0.864vw, 0.888rem);
   font-weight: 200;
+}
+
+/* Keep every category pill on the same slightly roomier rhythm. */
+.home-page .portfolio .project-card-stack.project-grid-enabled .project-category-pill,
+.home-page .tag-scroll-section .tag,
+body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-tags .tag {
+  padding: 0.42rem 0.9rem;
+  letter-spacing: 0.154em;
+  font-weight: 400;
+  border-color: #fff !important;
+  color: #fff !important;
+}
+
+/* Project content shares the exact horizontal bounds defined by the navigation. */
+@media (min-width: 1001px) {
+  body.project-page.secondary-page:not(.more-of-my-work) .project-wrapper {
+    /* Compensate for the divider's visual weight so the content reads flush with it. */
+    padding-right: calc(var(--project-content-right, var(--project-editorial-gutter)) - 0.125rem) !important;
+    padding-left: calc(var(--project-content-left, var(--project-editorial-gutter)) - 0.125rem) !important;
+  }
+}
+
+/* Previous/next controls dock to the footer's upper rule as a dedicated right-side box. */
+body.project-page.secondary-page:not(.more-of-my-work) .site-navigation > .project-page-navigation {
+  display: none !important;
+}
+
+body.project-page.secondary-page:not(.more-of-my-work) .project-footer-navigation {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  margin: 0;
+  padding: 0;
+  background: var(--color-ink);
+}
+
+body.project-page.secondary-page:not(.more-of-my-work) .project-footer-navigation .project-page-navigation {
+  position: static !important;
+  display: flex !important;
+  width: auto !important;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  border: 2px solid var(--color-cream);
+  border-right: 0;
+  border-bottom: 0;
+  background: var(--color-ink);
+}
+
+body.project-page.secondary-page:not(.more-of-my-work) .project-footer-navigation .project-nav-control {
+  align-self: stretch;
+  display: grid;
+  min-width: 0;
+  gap: 0.25rem;
+  padding: 0.35rem clamp(0.75rem, 1.25vw, 1.25rem) 0.55rem;
+  place-items: center;
+  background-color: transparent;
+  color: var(--color-cream) !important;
+  font-family: "Lexend", sans-serif;
+  font-size: clamp(0.792rem, 1.1vw, 1.1rem);
+  font-weight: 300;
+  letter-spacing: var(--oswald-tracking);
+  transition: background-color 240ms ease, color 240ms ease;
+}
+
+body.project-page.secondary-page:not(.more-of-my-work) .project-footer-navigation .project-nav-control + .project-nav-control {
+  border-left: 2px solid var(--color-cream);
+}
+
+body.project-page.secondary-page:not(.more-of-my-work) .project-footer-navigation .project-nav-control:hover,
+body.project-page.secondary-page:not(.more-of-my-work) .project-footer-navigation .project-nav-control:focus-visible {
+  background-color: rgba(var(--color-blue-rgb), 0.5) !important;
+  color: var(--color-cream) !important;
+}
+
+body.project-page.secondary-page:not(.more-of-my-work) .project-footer-navigation .project-nav-control:hover svg,
+body.project-page.secondary-page:not(.more-of-my-work) .project-footer-navigation .project-nav-control:focus-visible svg {
+  transform: none;
+}
+
+/* Footer social marks remain cream, with the shared translucent-blue interaction state. */
+.footer-global .footer-socials-list .footer-item a {
+  background-color: var(--color-cream) !important;
+}
+
+.footer-global .footer-socials-list .footer-item a:hover,
+.footer-global .footer-socials-list .footer-item a:focus-visible {
+  background-color: rgba(var(--color-blue-rgb), 0.5) !important;
+}
+
+/* Render the supplied social SVGs directly instead of relying on external-file masks. */
+.footer-global .footer-socials-list .footer-item a {
+  background: transparent !important;
+  -webkit-mask: none !important;
+  mask: none !important;
+}
+
+.footer-global .footer-socials-list .footer-item .social-icon {
+  position: static !important;
+  display: block;
+  width: 50px !important;
+  height: 50px !important;
+  opacity: 1 !important;
+  pointer-events: auto;
+  filter: none !important;
+  transition: opacity 240ms ease;
+}
+
+.footer-global .footer-socials-list .footer-item a:hover .social-icon {
+  opacity: 0.5 !important;
+}
+
+/* Project-page theme overrides must not suppress the shared footer-link hover state. */
+body.project-page.secondary-page:not(.more-of-my-work) .footer-global a:hover,
+body.project-page.secondary-page:not(.more-of-my-work) .footer-global a:focus-visible {
+  color: var(--color-blue) !important;
+}
+
+body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-title {
+  color: var(--color-blue) !important;
+}
+
+@media (max-width: 1000px) {
+  body.project-page.secondary-page:not(.more-of-my-work) .project-footer-navigation .project-page-navigation {
+    gap: 0;
+    padding: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  body .site-navigation {
+    padding-left: 0 !important;
+  }
+
+  body .site-navigation > .home-nav-logo {
+    margin-right: 0 !important;
+    padding-right: clamp(0.35rem, 1.5vw, 0.5rem) !important;
+    padding-left: clamp(0.35rem, 1.5vw, 0.5rem);
+  }
+
+  body .site-navigation > .nav-branding {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin-left: 0 !important;
+  }
+
+  body .site-navigation > .nav-branding > li {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  body .site-navigation > .nav-branding > li:first-child {
+    border-left: 0;
+  }
+
+  body .site-navigation > .nav-branding > li > .nav-branding-item {
+    width: 100%;
+    padding-inline: clamp(0.2rem, 1vw, 0.38rem) !important;
+  }
+
+  .home-page .portfolio .project-card-stack.project-grid-enabled {
+    gap: 2.6rem;
+  }
 }
