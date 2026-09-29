@@ -71,7 +71,7 @@
       preserveAspectRatio="none"
       aria-hidden="true"
     >
-      <g class="ps3-ribbon-waves" fill="none" stroke="#6186ff">
+      <g class="ps3-ribbon-waves" fill="none" stroke="#3a8eff">
         <path class="ps3-ribbon-wave" data-wave="0" stroke-width="0.7" />
         <path class="ps3-ribbon-wave" data-wave="1" stroke-width="1" />
         <path class="ps3-ribbon-wave" data-wave="2" stroke-width="1.25" />
@@ -85,18 +85,15 @@
       </a>
       <ul class="nav-branding">
         <li>
+          <a href="mailto:brendanhurtt@gmail.com" class="nav-branding-item">Contact</a>
+        </li>
+        <li>
           <a href="more-of-my-work.html" class="nav-branding-item">More Of My Work</a>
         </li>
         <li>
-          <a href="about.html" class="nav-branding-item">About Me</a>
+          <a href="about.html" class="nav-branding-item">About</a>
         </li>
       </ul>
-      <div class="nav-sound-control">
-        <label class="nav-sound-toggle" for="soundToggle">
-          <input id="soundToggle" type="checkbox" role="switch" aria-label="Turn sound on" aria-checked="false" />
-          <span class="nav-sound-orb" aria-hidden="true"><span class="nav-sound-icon"></span></span>
-        </label>
-      </div>
     </header>
     <section class="hero">
       <!-- Hero background video intentionally disabled. -->
@@ -113,11 +110,6 @@
 
         <div class="hero-headline-wrapper">
           <h3 class="hero-headline"><span id="typed-output"></span><span class="typing-caret" aria-hidden="true">|</span></h3>
-          <div class="hero-actions">
-            <p class="hero-contact">
-              <a class="hero-contact-link" href="mailto:brendanhurtt@gmail.com">REACH OUT</a>
-            </p>
-          </div>
         </div>
 
       </div>
@@ -126,7 +118,7 @@
     <main id="next-section" class="main-work-section">
       <section class="portfolio">
         <ul
-          class="grid project-card-stack"
+          class="grid project-card-stack project-grid-reveal-pending"
           aria-label="Selected projects"
           tabindex="0"
         >
@@ -187,11 +179,11 @@
             <figure>
               <img
                 class="project-thumbnail-overlay"
-                src="assets/home-page/hover-placeholder.svg"
-                width="1500"
-                height="1500"
+                src="assets/home-page/bazoof-thumbnail-3.jpg"
+                width="1600"
+                height="1000"
                 loading="lazy"
-                alt="Bazoof project preview coming soon"
+                alt="Bazoof project preview"
               />
             </figure>
             <a href="project-3-bazoof.html">
@@ -334,11 +326,11 @@
             <figure>
               <img
                 class="project-thumbnail-overlay"
-                src="assets/home-page/hover-placeholder.svg"
-                width="1500"
-                height="1500"
+                src="assets/home-page/hand2mind-thumbnail-9.jpg"
+                width="1600"
+                height="1000"
                 loading="lazy"
-                alt="Hand2Mind project preview coming soon"
+                alt="Hand2Mind project preview"
               />
             </figure>
             <a href="project-9-hand2mind.html">
@@ -523,8 +515,7 @@
     </script>
     <script>
       (() => {
-        const fullText =
-          "Blending bold branding concepts and illustration into designs that truly stand out.";
+        const fullText = "Branding and Illustration Graphic Designer";
         const target = document.getElementById("typed-output");
 
         const startTyping = () => {
@@ -559,6 +550,146 @@
 
         const cards = Array.from(stack.querySelectorAll(".work-page-grid-item"));
         if (cards.length < 2) return;
+
+        const projectGridEnabled = true;
+        if (projectGridEnabled) {
+          const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+          stack.classList.add("project-grid-enabled");
+
+          cards.forEach((card) => {
+            const link = card.querySelector(":scope > a");
+            const figure = card.querySelector(":scope > figure");
+            if (link && figure) link.prepend(figure);
+
+            const category = card.querySelector(".work-grid-project-category");
+            if (category && category.dataset.pillsPrepared !== "true") {
+              const labels = category.textContent
+                .split(/,|\band\b/i)
+                .map((label) => label.trim())
+                .filter(Boolean);
+              category.dataset.pillsPrepared = "true";
+              category.replaceChildren(
+                ...labels.map((label) => {
+                  const pill = document.createElement("span");
+                  pill.className = "project-category-pill";
+                  pill.textContent = label;
+                  return pill;
+                })
+              );
+            }
+
+            const previewSources = Array.from(
+              card.querySelectorAll(".project-hover-image-sources img")
+            )
+              .map((image) => image.getAttribute("src"))
+              .filter(Boolean)
+              .map((source) => ({
+                source,
+                duration: /\.gif(?:$|[?#])/i.test(source) ? 2000 : 1500,
+                isGif: /\.gif(?:$|[?#])/i.test(source),
+              }));
+
+            if (!figure || !previewSources.length) return;
+
+            const layers = [0, 1].map(() => {
+              const image = document.createElement("img");
+              image.className = "project-hover-preview";
+              image.alt = "";
+              image.setAttribute("aria-hidden", "true");
+              figure.append(image);
+              return image;
+            });
+
+            let timer = null;
+            let sourceIndex = 0;
+            let frontLayer = 0;
+
+            const stopPreview = () => {
+              if (timer) window.clearTimeout(timer);
+              timer = null;
+              layers.forEach((layer) => layer.classList.remove("is-visible"));
+              card.classList.remove("is-previewing");
+            };
+
+            const scheduleNext = () => {
+              const isSingleGif = previewSources.length === 1 && previewSources[0].isGif;
+              if (reducedMotion.matches || (previewSources.length < 2 && !isSingleGif)) return;
+              timer = window.setTimeout(() => {
+                const nextLayer = frontLayer === 0 ? 1 : 0;
+                if (!isSingleGif) sourceIndex = (sourceIndex + 1) % previewSources.length;
+                if (isSingleGif) layers[nextLayer].removeAttribute("src");
+                layers[nextLayer].src = previewSources[sourceIndex].source;
+                layers[nextLayer].classList.remove("is-visible");
+                window.requestAnimationFrame(() => {
+                  if (!card.matches(":hover, :focus-within")) return;
+                  layers[nextLayer].classList.add("is-visible");
+                  layers[frontLayer].classList.remove("is-visible");
+                  frontLayer = nextLayer;
+                  scheduleNext();
+                });
+              }, previewSources[sourceIndex].duration);
+            };
+
+            const startPreview = () => {
+              if (card.classList.contains("is-previewing")) return;
+              sourceIndex = 0;
+              frontLayer = 0;
+              layers[0].src = previewSources[0].source;
+              layers[1].classList.remove("is-visible");
+              card.classList.add("is-previewing");
+              window.requestAnimationFrame(() => {
+                if (!card.matches(":hover, :focus-within")) return;
+                layers[0].classList.add("is-visible");
+                scheduleNext();
+              });
+            };
+
+            figure.addEventListener("mouseenter", startPreview);
+            figure.addEventListener("mouseleave", stopPreview);
+            card.addEventListener("focusin", startPreview);
+            card.addEventListener("focusout", () => {
+              window.requestAnimationFrame(() => {
+                if (!card.matches(":hover, :focus-within")) stopPreview();
+              });
+            });
+          });
+
+          const revealProjectRows = () => {
+            const cardsPerRow = window.matchMedia("(max-width: 700px)").matches ? 1 : 3;
+            const rows = cards.reduce((groups, card, index) => {
+              const rowIndex = Math.floor(index / cardsPerRow);
+              (groups[rowIndex] ||= []).push(card);
+              return groups;
+            }, []);
+            const revealRow = (row) => row.forEach((card) => card.classList.add("is-grid-row-visible"));
+
+            if (reducedMotion.matches || !("IntersectionObserver" in window)) {
+              rows.forEach(revealRow);
+              return;
+            }
+
+            const rowObserver = new IntersectionObserver(
+              (entries, observer) => {
+                entries.forEach((entry) => {
+                  if (!entry.isIntersecting) return;
+                  revealRow(rows[Number(entry.target.dataset.projectRow)]);
+                  observer.unobserve(entry.target);
+                });
+              },
+              { threshold: 0.08, rootMargin: "0px 0px -15%" }
+            );
+
+            rows.forEach((row, rowIndex) => {
+              row[0].dataset.projectRow = String(rowIndex);
+              rowObserver.observe(row[0]);
+            });
+          };
+
+          stack.classList.add("project-grid-reveal-ready");
+          window.requestAnimationFrame(revealProjectRows);
+
+          return;
+        }
 
         const prepareProjectDetailPanels = () => {
           cards.forEach((card) => {
@@ -1235,8 +1366,8 @@
     </script>
     <script>
       (() => {
-        // A deliberately restrained, full-colour ribbon treatment for the homepage.
-        const homepageAmbientEffectsEnabled = true;
+        // Temporarily disabled while the homepage layout is refined.
+        const homepageAmbientEffectsEnabled = false;
         if (!homepageAmbientEffectsEnabled) return;
 
         const backdrop = document.querySelector(".ps3-ribbon-background");
@@ -1270,7 +1401,7 @@
           };
 
           particle.setAttribute("r", `${1.1 + ((index * 13.17) % 1) * 0.9}`);
-          particle.setAttribute("fill", "#6186ff");
+          particle.setAttribute("fill", "#3a8eff");
           particle.setAttribute("opacity", `${0.62 + ((index * 11.3) % 1) * 0.22}`);
           particleLayer.append(particle);
           return particleData;
@@ -1346,13 +1477,26 @@
 
           const navigationBounds = navigation.getBoundingClientRect();
           const navigationStyles = window.getComputedStyle(navigation);
-          const leftEdge = navigationBounds.left + Number.parseFloat(navigationStyles.paddingLeft);
+          const logo = navigation.querySelector(".home-nav-logo");
+          const aboutButton = navigation.querySelector(".nav-branding > li:last-child");
+          const logoBounds = logo?.getBoundingClientRect();
+          const aboutBounds = aboutButton?.getBoundingClientRect();
+          const leftEdge =
+            logoBounds?.right ??
+            navigationBounds.left + Number.parseFloat(navigationStyles.paddingLeft);
           const rightEdge =
+            aboutBounds?.left ??
             navigationBounds.right - Number.parseFloat(navigationStyles.paddingRight);
 
           name.style.setProperty("--hero-name-left", `${Math.max(0, leftEdge)}px`);
+          name.parentElement?.style.setProperty("--hero-title-left", `${Math.max(0, leftEdge)}px`);
+          document.documentElement.style.setProperty("--homepage-content-left", `${Math.max(0, leftEdge)}px`);
           name.style.setProperty(
             "--hero-name-right",
+            `${Math.max(0, window.innerWidth - rightEdge)}px`
+          );
+          document.documentElement.style.setProperty(
+            "--homepage-content-right",
             `${Math.max(0, window.innerWidth - rightEdge)}px`
           );
 
@@ -1367,7 +1511,18 @@
 
         const queueHeroNameSync = () => window.requestAnimationFrame(syncHeroName);
         window.addEventListener("resize", queueHeroNameSync);
-        if (document.fonts?.ready) document.fonts.ready.then(queueHeroNameSync);
+        if (document.fonts?.ready) {
+          document.fonts.ready.then(() => {
+            syncHeroName();
+            document.body.classList.add("hero-layout-ready");
+          });
+        } else {
+          syncHeroName();
+          document.body.classList.add("hero-layout-ready");
+        }
+        document
+          .querySelectorAll(".site-navigation > .home-nav-logo, .site-navigation > .nav-branding")
+          .forEach((element) => element.addEventListener("animationend", queueHeroNameSync));
         queueHeroNameSync();
       })();
     </script>

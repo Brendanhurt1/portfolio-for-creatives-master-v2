@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200;400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Oswald:wght@200;400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Slackey&display=swap");
 
 /*
@@ -11,9 +11,9 @@
 
 :root {
   /* Typography */
-  --font-family-body: "Poppins", sans-serif;
+  --font-family-body: "Lexend", sans-serif;
   --font-family-heading: "Oswald", sans-serif;
-  --font-family-project-title: "Poppins", sans-serif;
+  --font-family-project-title: "Lexend", sans-serif;
   --oswald-tracking: 0.14em;
   /*
    * MASTER PALETTE
@@ -25,8 +25,8 @@
   --color-ink-rgb: 28, 27, 33;
   --color-cream: #fffcee;
   --color-cream-rgb: 255, 252, 238;
-  --color-blue: #6186ff;
-  --color-blue-rgb: 97, 134, 255;
+  --color-blue: #3a8eff;
+  --color-blue-rgb: 58, 142, 255;
 
   /* Dark-theme controls: shared by Reach Out, navigation, sound, and the theme toggle. */
   --dark-control-surface: var(--color-blue);
@@ -229,7 +229,7 @@ h2 {
   line-height: 1.2;
   margin-bottom: 1rem;
   color: var(--h5-color);
-  font-family: "poppins", sans-serif;
+  font-family: "Lexend", sans-serif;
   font-weight: 400;
   text-transform: uppercase;
 }
@@ -335,7 +335,7 @@ em {
   font-size: 1.25rem;
   color: var(--color-text-project-description);
   text-transform: uppercase;
-  font-family: "poppins", sans-serif;
+  font-family: "Lexend", sans-serif;
   font-weight: 600;
 }
 
@@ -1210,7 +1210,7 @@ body {
   line-height: 1.2; /* Consistent line height for footer items to improve spacing */
   margin-bottom: 0.25rem;
   font-size: 1.2rem;
-  font-family: "poppins", sans-serif;
+  font-family: "Lexend", sans-serif;
   color: #ffffff;
 }
 
@@ -2403,7 +2403,7 @@ html {
 .project-description-title {
   text-transform: uppercase;
   font-size: 2.5rem;
-  font-family: "Poppins", sans-serif;
+  font-family: "Lexend", sans-serif;
   color: var(--color-blue);
   font-weight: 500;
 }
@@ -2802,7 +2802,7 @@ html {
 }
 
 .hero-headline {
-  font-family: "Poppins", sans-serif;
+  font-family: "Lexend", sans-serif;
   font-size: 0.9rem; /* mobile default */
   line-height: 1.35;
   font-weight: 400;
@@ -2818,16 +2818,17 @@ html {
   gap: 1.5rem;
   justify-content: flex-start;
   padding-bottom: 0;
-  padding-left: clamp(1.5rem, 8vw, 8rem);
+  padding-left: var(--hero-title-left, clamp(1.5rem, 8vw, 8rem));
   text-align: left;
   color: var(--color-cream);
 }
 
 .home-page .hero-headline-wrapper .hero-headline {
   margin-inline: 0;
-  font-size: 1.35rem;
+  font-size: 1.42rem;
+  font-weight: 300;
   text-align: left;
-  text-wrap: wrap;
+  white-space: nowrap;
   color: var(--color-cream);
 }
 
@@ -2875,7 +2876,7 @@ html {
   }
 
   .home-page .hero-headline-wrapper .hero-headline {
-    font-size: 1.8rem;
+    font-size: 1.89rem;
   }
 }
 
@@ -3415,9 +3416,9 @@ strong {
 }
 
 .home-page .hero-name {
-  margin: clamp(1rem, 2vw, 2rem)
+  margin: clamp(3rem, 6vw, 6rem)
     var(--hero-name-right, clamp(1.5rem, 8vw, 8rem))
-    clamp(1.5rem, 3vw, 3rem)
+    clamp(0.25rem, 0.5vw, 0.5rem)
     var(--hero-name-left, clamp(1.5rem, 8vw, 8rem));
   color: var(--color-cream);
   line-height: 0.85;
@@ -3427,21 +3428,21 @@ strong {
   display: inline-flex;
   align-items: baseline;
   gap: 0.4em;
-  font-family: "Oswald", sans-serif;
+  font-family: "Lexend", sans-serif;
   font-size: clamp(3rem, 12.5vw, 20rem);
-  font-weight: 200;
-  letter-spacing: var(--oswald-tracking);
+  font-weight: 500;
+  letter-spacing: -0.055em;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
-/* Cancel Oswald's outer side bearings while preserving interior tracking. */
+/* Counter Lexend's visible left side-bearing so the B optically meets the logo divider. */
 .home-page .hero-name-content > span:first-child {
-  margin-left: -0.06em;
+  margin-left: -0.105em;
 }
 
 .home-page .hero-name-content > span:last-child {
-  margin-right: -0.16em;
+  margin-right: 0;
 }
 
 .home-page .tag-scroll-section .tag {
@@ -3531,11 +3532,11 @@ strong {
   .home-page .hero-name-content {
     gap: 0.4em;
     font-size: clamp(2.1rem, calc(16.5vw - 0.5rem), 5.75rem);
-    letter-spacing: 0.08em;
+    letter-spacing: -0.055em;
   }
 
   .home-page .hero-name-content > span:last-child {
-    margin-right: -0.1em;
+    margin-right: 0;
   }
 
   .home-page .home-nav-logo-mark {
@@ -3796,7 +3797,7 @@ html:not([data-theme="light"]) .home-page .portfolio .project-card-stack .projec
 
 .home-page .portfolio .project-card-stack .project-details-overlay .work-grid-project-category {
   top: calc(100% + 1.15rem);
-  font-family: "Poppins", sans-serif;
+  font-family: "Lexend", sans-serif;
   letter-spacing: normal;
   font-size: clamp(0.8rem, 1.15vw, 1.1rem);
   font-weight: 500;
@@ -4037,9 +4038,9 @@ body:not(.home-page) header.site-navigation .home-nav-logo:focus-visible .home-n
 
 /* Project-page typography, tags, and draggable page-scroll control. */
 .secondary-page.project-page:not(.more-of-my-work) .project-title {
-  font-family: "Oswald", sans-serif;
-  font-weight: 200;
-  letter-spacing: var(--oswald-tracking);
+  font-family: "Lexend", sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.045em;
 }
 
 .secondary-page.project-page:not(.more-of-my-work) .project-tags {
@@ -4421,7 +4422,7 @@ body.home-page > .bottomMenu {
 }
 
 .ps3-ribbon-waves {
-  /* Keep the #6186ff lines crisp; restraint comes from their line weight, not opacity. */
+  /* Keep the #3a8eff lines crisp; restraint comes from their line weight, not opacity. */
   filter: none;
 }
 
@@ -5057,18 +5058,18 @@ html:not([data-theme="light"]) .theme-switch:hover .theme-switch-track {
     width: 100%;
     gap: 1rem;
     padding-right: 1rem;
-    padding-left: 1rem;
+    padding-left: var(--hero-title-left, 1rem);
   }
 
   .home-page .hero-name {
     /* Pull the intro closer without changing the desktop hero rhythm. */
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.375rem;
   }
 
   .home-page .hero-headline-wrapper .hero-headline {
     width: 100%;
     max-width: none;
-    font-size: clamp(0.784rem, 4.175vw, 0.886rem);
+    font-size: clamp(0.823rem, 4.384vw, 0.93rem);
     line-height: 1.35;
   }
 
@@ -5528,19 +5529,22 @@ body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-t
 
 body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-tags .tag {
   margin: 0 !important;
-  border: 0 !important;
+  border: 1.5px solid var(--color-blue) !important;
   outline: 0 !important;
-  background-color: var(--color-blue) !important;
-  color: var(--color-ink) !important;
-  padding: 9.6px;
-  font-size: 14.4px;
+  border-radius: 999px;
+  background: transparent !important;
+  color: var(--color-blue) !important;
+  font-family: "Oswald", sans-serif;
+  font-weight: 200;
+  padding: 0.36rem 0.78rem;
+  font-size: clamp(0.696rem, 0.864vw, 0.888rem);
   letter-spacing: 0.154em;
 }
 
 @media (min-width: 1001px) {
   body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-tags .tag {
-    padding: 0.51rem 0.765rem;
-    font-size: 16.32px;
+    padding: 0.36rem 0.78rem;
+    font-size: clamp(0.696rem, 0.864vw, 0.888rem);
   }
 }
 
@@ -5690,3 +5694,483 @@ body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-t
                                               
 That’s a wrap! 
 */
+
+/* Compact, shared site navigation. */
+.site-navigation {
+  --site-nav-rule: #fffcee;
+  --site-nav-rule-width: 2px;
+  --site-nav-logo-padding: clamp(0.75rem, 1.5vw, 1.5rem);
+  --site-nav-inline-padding: var(--site-nav-logo-padding);
+}
+
+body .site-navigation {
+  display: flex !important;
+  align-items: stretch !important;
+  width: 100%;
+  min-height: clamp(3.24rem, 4.5vw, 4.05rem) !important;
+  height: clamp(3.24rem, 4.5vw, 4.05rem);
+  padding: 0 0 0 var(--site-nav-inline-padding) !important;
+  gap: 0;
+  border-bottom: var(--site-nav-rule-width) solid var(--site-nav-rule) !important;
+  background-color: rgba(var(--color-ink-rgb), 0.5) !important;
+}
+
+body .site-navigation > .home-nav-logo {
+  display: flex !important;
+  flex: 0 0 auto;
+  align-items: center;
+  align-self: stretch;
+  margin-right: clamp(2rem, 6vw, 7rem) !important;
+  padding-right: var(--site-nav-logo-padding) !important;
+  border-right: var(--site-nav-rule-width) solid var(--site-nav-rule);
+}
+
+body .site-navigation .home-nav-logo-mark {
+  width: clamp(2.5rem, 3.4vw, 4rem) !important;
+  height: clamp(1.7rem, 2.4vw, 2.8rem) !important;
+}
+
+body .site-navigation > .nav-branding,
+body.home-page .site-navigation > .nav-branding,
+body.project-page.secondary-page:not(.more-of-my-work) .site-navigation > .nav-branding {
+  display: flex !important;
+  align-items: stretch !important;
+  align-self: stretch;
+  height: auto;
+  margin: 0 0 0 auto !important;
+  padding: 0 !important;
+  gap: 0 !important;
+  list-style: none;
+  transform: none !important;
+}
+
+body.home-page .site-navigation > .home-nav-logo,
+body.project-page.secondary-page:not(.more-of-my-work) .site-navigation > .home-nav-logo {
+  align-self: stretch;
+}
+
+body .site-navigation > .nav-branding > li {
+  display: flex;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+}
+
+body .site-navigation > .nav-branding > li {
+  border-left: var(--site-nav-rule-width) solid var(--site-nav-rule);
+}
+
+body .site-navigation > .nav-branding > li > .nav-branding-item {
+  display: grid !important;
+  height: 100%;
+  margin: 0 !important;
+  padding: 0 clamp(0.75rem, 1.5vw, 1.5rem) !important;
+  place-items: center;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--site-nav-rule) !important;
+  font-family: "Lexend", sans-serif;
+  font-size: clamp(0.792rem, 1.1vw, 1.1rem) !important;
+  font-weight: 300;
+  letter-spacing: var(--oswald-tracking);
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+body .site-navigation > .nav-branding > li > .nav-branding-item:hover,
+body .site-navigation > .nav-branding > li > .nav-branding-item:focus-visible {
+  background-color: rgba(var(--color-blue-rgb), 0.5) !important;
+  color: var(--site-nav-rule) !important;
+}
+
+/* Defeat the legacy dark-control pill fill while retaining its theme-safe specificity. */
+html:not([data-theme="light"]) body.home-page .site-navigation > .nav-branding > li > .nav-branding-item {
+  background-color: transparent !important;
+  color: var(--site-nav-rule) !important;
+}
+
+html:not([data-theme="light"]) body.home-page .site-navigation > .nav-branding > li > .nav-branding-item:hover,
+html:not([data-theme="light"]) body.home-page .site-navigation > .nav-branding > li > .nav-branding-item:focus-visible {
+  background-color: rgba(var(--color-blue-rgb), 0.5) !important;
+  color: var(--site-nav-rule) !important;
+}
+
+/* Project previous/next controls stay accessible without increasing the main bar's height. */
+body.project-page.secondary-page:not(.more-of-my-work) .site-navigation {
+  position: sticky !important;
+  overflow: visible !important;
+}
+
+body.project-page.secondary-page:not(.more-of-my-work) .project-page-navigation {
+  position: absolute;
+  top: calc(100% + 0.75rem);
+  right: var(--site-nav-inline-padding);
+  display: flex;
+  grid-column: auto;
+  margin: 0;
+  animation: none;
+}
+
+@media (max-width: 700px) {
+  .site-navigation {
+    --site-nav-logo-padding: clamp(0.5rem, 2vw, 0.75rem);
+    --site-nav-inline-padding: var(--site-nav-logo-padding);
+  }
+
+  body .site-navigation {
+    min-height: 3.15rem !important;
+    height: 3.15rem;
+  }
+
+  body .site-navigation > .home-nav-logo {
+    margin-right: clamp(0.75rem, 3vw, 1.25rem) !important;
+    padding-right: var(--site-nav-logo-padding) !important;
+  }
+
+  body .site-navigation .home-nav-logo-mark {
+    width: 2rem !important;
+    height: 1.4rem !important;
+  }
+
+  body .site-navigation > .nav-branding > li > .nav-branding-item {
+    padding-inline: clamp(0.38rem, 1.8vw, 0.7rem) !important;
+    font-size: clamp(0.616rem, 2.75vw, 0.792rem) !important;
+  }
+
+  body.project-page.secondary-page:not(.more-of-my-work) .project-page-navigation {
+    top: calc(100% + 0.5rem);
+    right: var(--site-nav-inline-padding);
+    gap: 0.9rem;
+  }
+}
+
+/* Homepage project grid: a three-column editorial layout with hover previews. */
+.home-page .portfolio {
+  padding-top: clamp(2rem, 4vw, 4rem) !important;
+  padding-bottom: clamp(3rem, 6vw, 6rem) !important;
+  overflow: visible !important;
+}
+
+.home-page .portfolio .project-card-stack.project-grid-enabled {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
+  height: auto !important;
+  margin: 0;
+  padding: 0;
+  gap: clamp(2rem, 3vw, 4rem) clamp(1.25rem, 2vw, 2.5rem);
+  isolation: auto;
+  list-style: none;
+  touch-action: auto;
+  user-select: auto;
+}
+
+.home-page .portfolio .project-card-stack.project-grid-enabled .work-page-grid-item {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  width: auto !important;
+  margin: 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  cursor: pointer;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transform: none !important;
+  visibility: visible !important;
+  will-change: auto;
+}
+
+.home-page .portfolio .project-card-stack.project-grid-enabled .work-page-grid-item > a {
+  position: static !important;
+  inset: auto !important;
+  z-index: auto;
+  display: flex !important;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.home-page .portfolio .project-card-stack.project-grid-enabled .work-page-grid-item figure {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 0.6rem;
+  background: var(--color-ink);
+}
+
+.home-page .portfolio .project-card-stack.project-grid-enabled .work-page-grid-item figure img,
+.home-page .portfolio .project-card-stack.project-grid-enabled .work-page-grid-item figure .project-thumbnail-overlay,
+.home-page .portfolio .project-card-stack.project-grid-enabled .work-page-grid-item .project-hover-preview {
+  transform: none !important;
+}
+
+.home-page .portfolio .project-card-stack.project-grid-enabled .work-page-grid-item figure .project-thumbnail-overlay {
+  opacity: 1;
+  transform: scale(1.015, 1.025) !important;
+  transition: opacity 420ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.home-page .portfolio .project-card-stack.project-grid-enabled .work-page-grid-item.is-previewing .project-thumbnail-overlay {
+  opacity: 0;
+  transform: scale(1.05, 1.06) !important;
+}
+
+.home-page .portfolio .project-card-stack.project-grid-enabled .work-page-grid-item .project-hover-preview {
+  z-index: 2;
+  border-radius: inherit;
+  transform: scale(1.015, 1.025) !important;
+  transition: opacity 420ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.home-page .portfolio .project-card-stack.project-grid-enabled .work-page-grid-item.is-previewing .project-hover-preview {
+  transform: scale(1.05, 1.06) !important;
+}
+
+.home-page .portfolio .project-card-stack.project-grid-enabled .project-details-overlay.overlay {
+  position: static !important;
+  display: flex !important;
+  width: 100%;
+  height: auto;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0.85rem 0 0;
+  overflow: visible;
+  border-radius: 0;
+  background: transparent !important;
+  clip-path: none !important;
+  opacity: 1 !important;
+  pointer-events: auto;
+  transform: none !important;
+}
+
+.home-page .portfolio .project-card-stack.project-grid-enabled .project-details-overlay .work-grid-project-title {
+  position: static !important;
+  width: 100%;
+  margin: 0;
+  color: var(--color-cream) !important;
+  font-family: "Lexend", sans-serif;
+  font-size: 1.42rem;
+  font-weight: 300;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  opacity: 1 !important;
+  text-align: left;
+  text-transform: uppercase;
+  transform: none !important;
+}
+
+.home-page .portfolio .project-card-stack.project-grid-enabled .project-details-overlay .work-grid-project-category {
+  position: static !important;
+  display: flex;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  background: transparent !important;
+  color: var(--color-blue) !important;
+  font-family: "Lexend", sans-serif;
+  font-size: clamp(0.58rem, 0.72vw, 0.74rem);
+  font-weight: 300;
+  letter-spacing: 0.035em;
+  line-height: 1.25;
+  opacity: 1 !important;
+  text-align: left;
+  text-transform: uppercase;
+  transform: none !important;
+}
+
+.home-page .portfolio .project-card-stack.project-grid-enabled .project-category-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2em;
+  padding: 0.36rem 0.78rem;
+  border: 1.5px solid var(--color-blue);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-blue);
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(0.696rem, 0.864vw, 0.888rem);
+  font-weight: 200;
+}
+
+@media (min-width: 701px) {
+  .home-page .portfolio {
+    padding-right: var(--homepage-content-right, clamp(1.5rem, 8vw, 8rem)) !important;
+    padding-left: var(--homepage-content-left, clamp(1.5rem, 8vw, 8rem)) !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .home-page .portfolio .project-card-stack.project-grid-enabled .project-details-overlay .work-grid-project-title {
+    font-size: 1.89rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .home-page .portfolio {
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+  }
+
+  .home-page .portfolio .project-card-stack.project-grid-enabled {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.25rem;
+  }
+
+  .home-page .portfolio .project-card-stack.project-grid-enabled .work-page-grid-item figure {
+    aspect-ratio: 16 / 10;
+    border-radius: 0.5rem;
+  }
+
+  .home-page .portfolio .project-card-stack.project-grid-enabled .project-details-overlay .work-grid-project-title {
+    font-size: clamp(0.823rem, 4.384vw, 0.93rem);
+  }
+}
+
+/* Footer rules mirror the compact navigation's cream dividers. */
+.footer-global {
+  border-top: 2px solid #fffcee !important;
+}
+
+@media (min-width: 1001px) {
+  .footer-global {
+    column-gap: 0;
+    row-gap: 0;
+    padding-top: 0 !important;
+  }
+
+  .footer-global > .footer-tagline,
+  .footer-global > .footer-highlights,
+  .footer-global > .footer-contact-social {
+    padding-top: clamp(2rem, 4vw, 5rem);
+    padding-bottom: clamp(2rem, 4vw, 5rem);
+  }
+
+  .footer-global > .footer-tagline,
+  .footer-global > .footer-highlights {
+    border-right: 2px solid #fffcee;
+  }
+
+  .footer-global > .footer-tagline {
+    padding-right: clamp(1.25rem, 3vw, 4rem);
+  }
+
+  .footer-global > .footer-highlights {
+    padding-right: clamp(1.25rem, 3vw, 4rem);
+    padding-left: clamp(1.25rem, 3vw, 4rem);
+  }
+
+  .footer-global > .footer-contact-social {
+    padding-left: clamp(1.25rem, 3vw, 4rem);
+  }
+}
+
+/* The bottom two footer bands complete the rule-based frame. */
+.footer-global > .footer-full-width {
+  padding: 0 !important;
+  border-top: 2px solid #fffcee;
+}
+
+.footer-global .footer-arrow-container {
+  display: flex;
+  width: 100%;
+  margin-top: 0;
+}
+
+.footer-global .footer-arrow-link {
+  padding: 1.5rem 2rem 1.2rem;
+}
+
+.footer-global .footer-arrow-link:hover,
+.footer-global .footer-arrow-link:focus-visible {
+  transform: scale(1.04) !important;
+}
+
+.footer-global .footer-arrow-container > #copyright {
+  width: 100%;
+  margin: 0 !important;
+  padding: 0 2rem 0.05rem;
+  text-align: center;
+}
+
+.footer-global > .footer-full-width > p + .footer-fineprint {
+  width: 100%;
+  margin: 0;
+  padding: 0 2rem 0.05rem;
+}
+
+/* Keep the opening layout stable while its font-dependent hero dimensions are measured. */
+body.home-page:not(.hero-layout-ready) .hero-name,
+body.home-page:not(.hero-layout-ready) .hero-headline-wrapper {
+  visibility: hidden;
+}
+
+body .site-navigation > .home-nav-logo,
+body .site-navigation > .nav-branding,
+body .site-navigation .project-page-navigation,
+body .site-navigation .project-nav-control,
+body.home-page:not(.secondary-page) .hero-headline-wrapper {
+  animation: none !important;
+}
+
+body .site-navigation > .home-nav-logo,
+body .site-navigation > .nav-branding,
+body .site-navigation .project-page-navigation,
+body .site-navigation .project-nav-control {
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+/* Project-grid rows enter only when they are needed in the viewport. */
+.home-page .portfolio .project-card-stack.project-grid-reveal-pending .work-page-grid-item {
+  opacity: 0 !important;
+  transform: translateY(4.5rem) !important;
+  transition: opacity 820ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1050ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  will-change: opacity, transform;
+}
+
+.home-page .portfolio .project-card-stack.project-grid-reveal-pending .work-page-grid-item.is-grid-row-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-page .portfolio .project-card-stack.project-grid-reveal-pending .work-page-grid-item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* Service tags below the grid share the project-category pill treatment. */
+.home-page .tag-scroll-section .tag {
+  min-height: 2em;
+  padding: 0.36rem 0.78rem;
+  border: 1.5px solid var(--color-blue) !important;
+  border-radius: 999px;
+  background: transparent !important;
+  color: var(--color-blue) !important;
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(0.696rem, 0.864vw, 0.888rem);
+  font-weight: 200;
+}
