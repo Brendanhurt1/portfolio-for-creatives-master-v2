@@ -1509,21 +1509,184 @@
           nameContent.style.fontSize = `${baseSize * (availableWidth / contentWidth)}px`;
         };
 
-        const queueHeroNameSync = () => window.requestAnimationFrame(syncHeroName);
+        let heroLayoutReady = false;
+        const queueHeroNameSync = () => {
+          if (!heroLayoutReady) return;
+          window.requestAnimationFrame(syncHeroName);
+        };
         window.addEventListener("resize", queueHeroNameSync);
-        if (document.fonts?.ready) {
-          document.fonts.ready.then(() => {
-            syncHeroName();
-            document.body.classList.add("hero-layout-ready");
+
+        const revealHero = () => {
+          // Let the completed font substitution and navigation dimensions settle
+          // before exposing the measured title, avoiding a visible second layout.
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              syncHeroName();
+              heroLayoutReady = true;
+              document.body.classList.add("hero-layout-ready");
+            });
           });
+        };
+
+        if (document.fonts?.ready && document.fonts?.load) {
+          Promise.all([
+            document.fonts.ready,
+            document.fonts.load('500 10rem "Lexend"'),
+            document.fonts.load('300 1rem "Lexend"'),
+          ]).then(revealHero, revealHero);
         } else {
-          syncHeroName();
-          document.body.classList.add("hero-layout-ready");
+          revealHero();
         }
         document
           .querySelectorAll(".site-navigation > .home-nav-logo, .site-navigation > .nav-branding")
           .forEach((element) => element.addEventListener("animationend", queueHeroNameSync));
-        queueHeroNameSync();
+      })();
+    </script>
+    <script>
+      (() => {
+        const hurt = document.querySelector(".hero-name-content > span:last-child");
+        const textNode = hurt?.firstChild;
+        if (!hurt || !textNode) return;
+
+        const hotspot = document.createElement("button");
+        hotspot.type = "button";
+        hotspot.className = "hero-r-easter-egg";
+        hotspot.tabIndex = -1;
+        hotspot.setAttribute("aria-hidden", "true");
+        document.body.append(hotspot);
+
+        const logo = document.createElement("button");
+        logo.type = "button";
+        logo.className = "dvd-logo-easter-egg";
+        logo.tabIndex = -1;
+        logo.setAttribute("aria-label", "Dismiss moving logo");
+        document.body.append(logo);
+
+        let animationFrame = null;
+        let motion = null;
+
+        const placeHotspot = () => {
+          const letterRange = document.createRange();
+          // "Hurt" is rendered in uppercase, making character 2 the R.
+          letterRange.setStart(textNode, 2);
+          letterRange.setEnd(textNode, 3);
+          const letter = letterRange.getBoundingClientRect();
+          if (!letter.width || !letter.height) return;
+
+          // Keep the hit area inside the R's upper negative counter.
+          hotspot.style.left = `${letter.left + letter.width * 0.38}px`;
+          hotspot.style.top = `${letter.top + letter.height * 0.29}px`;
+          hotspot.style.width = `${letter.width * 0.29}px`;
+          hotspot.style.height = `${letter.height * 0.22}px`;
+        };
+
+        const renderLogo = () => {
+          if (!motion) return;
+          logo.style.transform = `translate3d(${motion.x}px, ${motion.y}px, 0) rotate(${motion.rotation}deg)`;
+        };
+
+        const stopLogo = () => {
+          if (animationFrame) window.cancelAnimationFrame(animationFrame);
+          animationFrame = null;
+          motion = null;
+          logo.classList.remove("is-active");
+        };
+
+        const animateLogo = (time) => {
+          if (!motion) return;
+
+          const elapsed = Math.min((time - motion.lastTime) / 1000, 0.05);
+          motion.lastTime = time;
+          const maxX = Math.max(0, window.innerWidth - logo.offsetWidth);
+          const maxY = Math.max(0, window.innerHeight - logo.offsetHeight);
+
+          motion.x += motion.velocityX * elapsed;
+          motion.y += motion.velocityY * elapsed;
+          motion.rotation += motion.rotationVelocity * elapsed;
+
+          let hitSurface = false;
+
+          if (motion.x <= 0 || motion.x >= maxX) {
+            motion.x = Math.max(0, Math.min(maxX, motion.x));
+            motion.velocityX *= -1;
+            hitSurface = true;
+          }
+          if (motion.y <= 0 || motion.y >= maxY) {
+            motion.y = Math.max(0, Math.min(maxY, motion.y));
+            motion.velocityY *= -1;
+            hitSurface = true;
+          }
+          if (hitSurface) {
+            // A wall contact gently reverses and varies the otherwise slow spin.
+            const nextSpin = -motion.rotationVelocity + (Math.random() - 0.5) * 5;
+            motion.rotationVelocity = Math.max(-18, Math.min(18, nextSpin));
+          }
+
+          renderLogo();
+          animationFrame = window.requestAnimationFrame(animateLogo);
+        };
+
+        const launchLogo = () => {
+          stopLogo();
+          logo.classList.add("is-active");
+
+          const width = logo.offsetWidth;
+          const height = logo.offsetHeight;
+          const maxX = Math.max(0, window.innerWidth - width);
+          const maxY = Math.max(0, window.innerHeight - height);
+          const speed = 95 + Math.random() * 35;
+          const crossSpeed = speed * (0.45 + Math.random() * 0.35) * (Math.random() < 0.5 ? -1 : 1);
+          const edge = Math.floor(Math.random() * 4);
+          const nextMotion = {
+            x: 0,
+            y: 0,
+            velocityX: crossSpeed,
+            velocityY: crossSpeed,
+            rotation: Math.random() * 24 - 12,
+            rotationVelocity: (7 + Math.random() * 5) * (Math.random() < 0.5 ? -1 : 1),
+            lastTime: performance.now(),
+          };
+
+          if (edge === 0) {
+            nextMotion.x = 0;
+            nextMotion.y = Math.random() * maxY;
+            nextMotion.velocityX = speed;
+          } else if (edge === 1) {
+            nextMotion.x = maxX;
+            nextMotion.y = Math.random() * maxY;
+            nextMotion.velocityX = -speed;
+          } else if (edge === 2) {
+            nextMotion.x = Math.random() * maxX;
+            nextMotion.y = 0;
+            nextMotion.velocityY = speed;
+          } else {
+            nextMotion.x = Math.random() * maxX;
+            nextMotion.y = maxY;
+            nextMotion.velocityY = -speed;
+          }
+
+          motion = nextMotion;
+          renderLogo();
+          if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            animationFrame = window.requestAnimationFrame(animateLogo);
+          }
+        };
+
+        hotspot.addEventListener("click", launchLogo);
+        logo.addEventListener("click", stopLogo);
+        window.addEventListener("resize", () => {
+          placeHotspot();
+          if (!motion) return;
+          motion.x = Math.max(0, Math.min(window.innerWidth - logo.offsetWidth, motion.x));
+          motion.y = Math.max(0, Math.min(window.innerHeight - logo.offsetHeight, motion.y));
+          renderLogo();
+        });
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") stopLogo();
+        });
+
+        if (document.fonts?.ready) document.fonts.ready.then(() => requestAnimationFrame(placeHotspot));
+        else requestAnimationFrame(placeHotspot);
       })();
     </script>
     <script>
@@ -1553,7 +1716,8 @@
           cursor.classList.add("is-visible");
           cursor.classList.toggle(
             "is-clickable",
-            event.target instanceof Element && Boolean(event.target.closest(clickableSelector))
+            event.target instanceof Element &&
+              Boolean(event.target.closest(clickableSelector))
           );
         };
 

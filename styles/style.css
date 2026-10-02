@@ -5658,6 +5658,24 @@ body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-t
   body.project-page.secondary-page:not(.more-of-my-work) .section-container:has(.project-image, .project-static-media, .project-video-container) > :last-child:nth-child(odd) {
     grid-column: 1 / -1;
   }
+
+  /* The same editorial gutter separates one complete media row from the next. */
+  body.project-page.secondary-page:not(.more-of-my-work) .project-details > :is(
+    .project-intro-media,
+    .project-image-container,
+    .project-static-media-wrapper,
+    .project-content-row,
+    .section-container:has(.project-image, .project-static-media, .project-video-container)
+  ) + :is(
+    .project-intro-media,
+    .project-image-container,
+    .project-static-media-wrapper,
+    .project-content-row,
+    .section-container:has(.project-image, .project-static-media, .project-video-container)
+  ) {
+    /* The parent grid already owns this row gutter. */
+    margin-top: 0 !important;
+  }
 }
 
 @media (max-width: 1000px) {
@@ -6214,6 +6232,13 @@ body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-t
     /* Compensate for the divider's visual weight so the content reads flush with it. */
     padding-right: calc(var(--project-content-right, var(--project-editorial-gutter)) - 0.125rem) !important;
     padding-left: calc(var(--project-content-left, var(--project-editorial-gutter)) - 0.125rem) !important;
+    padding-bottom: clamp(1.5rem, 2.5vw, 3rem) !important;
+  }
+}
+
+@media (max-width: 1000px) {
+  body.project-page.secondary-page:not(.more-of-my-work) .project-wrapper {
+    padding-bottom: 2rem !important;
   }
 }
 
@@ -6319,7 +6344,362 @@ body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-t
   color: var(--color-blue) !important;
 }
 
+/* Homepage R easter egg: an invisible counter hotspot and a blue DVD-style logo. */
+.hero-r-easter-egg {
+  position: fixed;
+  z-index: 2100;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: default;
+  opacity: 0;
+}
+
+.dvd-logo-easter-egg {
+  position: fixed;
+  z-index: 3000;
+  display: none;
+  width: clamp(4.5rem, 9vw, 8rem);
+  aspect-ratio: 1.45;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: var(--color-blue);
+  -webkit-mask: url("../assets/branding-images/main-logo.svg") center / contain no-repeat;
+  mask: url("../assets/branding-images/main-logo.svg") center / contain no-repeat;
+  cursor: pointer;
+  transform-origin: center;
+}
+
+.dvd-logo-easter-egg.is-active {
+  display: block;
+}
+
+/* Brand-guide projects open with a full-bleed image directly below the navigation. */
+body:is(.project-1-milianos, .project-2-doze) .project-top-brand-guide {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body:is(.project-1-milianos, .project-2-doze) .project-top-brand-guide img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Doze project media uses the same cream keyline and corner treatment as Miliano's. */
+body.project-2-doze.project-page .project-details img,
+body.project-2-doze.project-page .project-details .project-video-container {
+  box-sizing: border-box;
+  border: 2px solid var(--color-cream);
+  border-radius: 0.6rem;
+}
+
+body.project-2-doze.project-page .project-details .project-video-container {
+  overflow: hidden;
+}
+
+/* Doze's motion piece plays quietly by default; this is its sole player control. */
+body.project-2-doze.project-page .project-video-sound-toggle {
+  position: absolute;
+  right: 0.65rem;
+  bottom: 0.65rem;
+  z-index: 2;
+  display: grid;
+  width: 2.4rem;
+  height: 2.4rem;
+  padding: 0;
+  place-items: center;
+  border: 2px solid var(--color-cream);
+  border-radius: 50%;
+  background: var(--color-ink);
+  color: var(--color-cream);
+  cursor: pointer;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+body.project-2-doze.project-page .project-video-sound-toggle svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+body.project-2-doze.project-page .project-video-container[data-muted="false"] .project-video-sound-slash {
+  display: none;
+}
+
+body.project-2-doze.project-page .project-video-sound-toggle:hover,
+body.project-2-doze.project-page .project-video-sound-toggle:focus-visible {
+  background: rgba(var(--color-blue-rgb), 0.5);
+  color: var(--color-cream);
+}
+
+body.project-2-doze.project-page .project-video-sound-toggle:focus-visible {
+  outline: 2px solid var(--color-cream);
+  outline-offset: 0.2rem;
+}
+
+/* Brand-guide projects use a sentence-case editorial subtitle in place of the large title. */
+body:is(.project-1-milianos, .project-2-doze) .project-brand-guide-subtitle {
+  margin: 0 0 0.75rem !important;
+  padding: 0 !important;
+  color: var(--color-blue) !important;
+  font-family: "Lexend", sans-serif;
+  font-size: 1.29rem;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+  text-transform: none;
+}
+
+@media (min-width: 1001px) and (max-width: 1400px) {
+  body:is(.project-1-milianos, .project-2-doze) .project-brand-guide-subtitle {
+    font-size: 1.0965rem;
+  }
+}
+
+@media (min-width: 1401px) {
+  body:is(.project-1-milianos, .project-2-doze) .project-brand-guide-subtitle {
+    font-size: 1.84875rem;
+  }
+}
+
+/* The opening Miliano's line is an editorial subtitle, scaled from the former title. */
+body.project-1-milianos .project-aside .project-intro-subtitle {
+  margin: 0 0 0.75rem !important;
+  color: var(--color-blue) !important;
+  font-family: "Lexend", sans-serif;
+  font-size: 1.29rem;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+@media (min-width: 1001px) and (max-width: 1400px) {
+  body.project-1-milianos .project-aside .project-intro-subtitle {
+    font-size: 1.0965rem;
+  }
+}
+
+@media (min-width: 1401px) {
+  body.project-1-milianos .project-aside .project-intro-subtitle {
+    font-size: 1.84875rem;
+  }
+}
+
+/* Brand-guide projects open with a standalone editorial block, followed by media. */
+@media (min-width: 1001px) {
+  /* Do not use the shared text/image split for this project’s opening. */
+  body:is(.project-1-milianos, .project-2-doze).project-page.secondary-page:not(.more-of-my-work) .project-wrapper {
+    display: block !important;
+  }
+
+  /* The complete introduction leads on its own before any media appears. */
+  body:is(.project-1-milianos, .project-2-doze).project-page.secondary-page:not(.more-of-my-work) .project-aside {
+    width: 75% !important;
+  }
+
+  /* Let the opening copy use the entire three-quarter-width editorial column. */
+  body:is(.project-1-milianos, .project-2-doze).project-page.secondary-page:not(.more-of-my-work) .project-aside .project-info,
+  body:is(.project-1-milianos, .project-2-doze).project-page.secondary-page:not(.more-of-my-work) .project-aside .project-description,
+  body:is(.project-1-milianos, .project-2-doze).project-page.secondary-page:not(.more-of-my-work) .project-aside .animated-text-group {
+    max-width: none !important;
+  }
+
+  body:is(.project-1-milianos, .project-2-doze).project-page.secondary-page:not(.more-of-my-work) .project-details {
+    display: flex !important;
+    flex-direction: column;
+    gap: var(--project-editorial-gap);
+    width: 100% !important;
+    margin-top: var(--project-editorial-gap);
+  }
+
+  /* These projects use a standalone, vertical media sequence.  Let the
+     container own every row gutter so adjacent media can never touch. */
+  body:is(.project-1-milianos, .project-2-doze).project-page.secondary-page:not(.more-of-my-work) .project-details > :is(
+    .project-intro-media,
+    .project-image-container,
+    .project-static-media-wrapper,
+    .project-content-row,
+    .section-container:has(.project-image, .project-static-media, .project-video-container)
+  ) {
+    margin: 0 !important;
+  }
+
+  /* The Doze motion feature has a larger vertical video, followed by unrestricted copy. */
+  body.project-2-doze.project-page.secondary-page:not(.more-of-my-work) .project-doze-social-row {
+    grid-template-columns: minmax(0, 0.63fr) minmax(0, 1.37fr);
+    align-items: start;
+  }
+
+  body.project-2-doze.project-page.secondary-page:not(.more-of-my-work) .project-doze-social-row > .project-image {
+    width: 100% !important;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: 0 !important;
+  }
+
+  body.project-2-doze.project-page.secondary-page:not(.more-of-my-work) .project-doze-social-row .project-video-container {
+    width: 100%;
+    height: auto;
+    padding-top: 0;
+    aspect-ratio: 9 / 16;
+    margin: 0 !important;
+  }
+
+  body.project-2-doze.project-page.secondary-page:not(.more-of-my-work) .project-doze-social-row iframe.video-phone {
+    width: 100% !important;
+    height: 100% !important;
+    aspect-ratio: auto;
+  }
+
+  body.project-2-doze.project-page.secondary-page:not(.more-of-my-work) .project-doze-social-row .project-description-one-column,
+  body.project-2-doze.project-page.secondary-page:not(.more-of-my-work) .project-doze-social-row .project-content-copy {
+    max-width: none !important;
+  }
+
+  body.project-2-doze.project-page.secondary-page:not(.more-of-my-work) .project-details > .project-image-container + .project-doze-social-row {
+    margin-top: 0 !important;
+  }
+
+  /* Use one shared gutter in both directions across Miliano's image grid. */
+  body.project-1-milianos.project-page.secondary-page:not(.more-of-my-work) .project-details > .project-image-container + .project-image-container {
+    margin-top: 0 !important;
+  }
+
+}
+
 @media (max-width: 1000px) {
+  body.project-page.secondary-page:not(.more-of-my-work) {
+    --project-mobile-media-gap: 1.5rem;
+  }
+
+  body:is(.project-1-milianos, .project-2-doze).project-page.secondary-page:not(.more-of-my-work) .project-details {
+    display: flex !important;
+    flex-direction: column;
+    gap: var(--project-mobile-media-gap);
+  }
+
+  body:is(.project-1-milianos, .project-2-doze).project-page.secondary-page:not(.more-of-my-work) .project-details > :is(
+    .project-intro-media,
+    .project-image-container,
+    .project-static-media-wrapper,
+    .project-content-row,
+    .section-container:has(.project-image, .project-static-media, .project-video-container)
+  ) {
+    margin: 0 !important;
+  }
+
+  /* Mobile media stacks use one gap between every asset and every row. */
+  body.project-page.secondary-page:not(.more-of-my-work) .project-details .project-image-container {
+    display: flex !important;
+    flex-direction: column;
+    gap: var(--project-mobile-media-gap);
+    margin-bottom: 0 !important;
+  }
+
+  body.project-page.secondary-page:not(.more-of-my-work) .project-details .project-image-container > .project-image {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  body.project-page.secondary-page:not(.more-of-my-work) .project-details > :is(
+    .project-intro-media,
+    .project-image-container,
+    .project-static-media-wrapper,
+    .project-content-row,
+    .section-container:has(.project-image, .project-static-media, .project-video-container)
+  ) + :is(
+    .project-intro-media,
+    .project-image-container,
+    .project-static-media-wrapper,
+    .project-content-row,
+    .section-container:has(.project-image, .project-static-media, .project-video-container)
+  ) {
+    margin-top: var(--project-mobile-media-gap) !important;
+  }
+
+  body.project-2-doze.project-page.secondary-page:not(.more-of-my-work) .project-details > .project-image-container + .project-doze-social-row {
+    margin-top: 0 !important;
+  }
+
+  /* Keep long-form project copy compact once the layout becomes a single column. */
+  body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-description,
+  body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-description-bold,
+  body.project-page.secondary-page:not(.more-of-my-work) .project-details .project-description,
+  body.project-page.secondary-page:not(.more-of-my-work) .project-details .project-description-one-column:not(.project-description-subtitle) {
+    font-size: 0.95rem !important;
+  }
+
+  /* Reuse the category-tag gap for a consistent compact copy rhythm. */
+  body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-description,
+  body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-description-bold,
+  body.project-page.secondary-page:not(.more-of-my-work) .project-details .project-description,
+  body.project-page.secondary-page:not(.more-of-my-work) .project-details .project-description-one-column:not(.project-description-subtitle) {
+    margin: 0 0 0.625rem !important;
+  }
+
+  body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-tags {
+    margin-top: 0.625rem !important;
+  }
+
+  body.project-page.secondary-page:not(.more-of-my-work) .project-aside .animated-text-group {
+    margin-bottom: 0.625rem !important;
+  }
+
+  body.project-1-milianos .project-intro-subtitle {
+    margin-bottom: 0.625rem !important;
+  }
+
+  /* Every mobile media handoff uses the same breathing room as stacked images. */
+  body.project-page.secondary-page:not(.more-of-my-work) .project-details :is(
+    .project-image,
+    .project-image-container,
+    .project-static-media,
+    .project-static-media-wrapper,
+    .project-video-container,
+    .vimeo-gif-wrapper
+  ) + :is(
+    .project-image,
+    .project-image-container,
+    .project-static-media,
+    .project-static-media-wrapper,
+    .project-video-container,
+    .vimeo-gif-wrapper,
+    .section-container,
+    .section-item,
+    .project-description,
+    .project-description-one-column,
+    .project-description-bold,
+    .project-content-copy,
+    .menu-copy-column
+  ),
+  body.project-page.secondary-page:not(.more-of-my-work) .project-details :is(
+    .project-description,
+    .project-description-one-column,
+    .project-description-bold,
+    .project-content-copy,
+    .menu-copy-column,
+    .section-item
+  ) + :is(
+    .project-image,
+    .project-image-container,
+    .project-static-media,
+    .project-static-media-wrapper,
+    .project-video-container,
+    .vimeo-gif-wrapper
+  ) {
+    margin-top: var(--project-mobile-media-gap) !important;
+  }
+
+  /* A mobile image stack supplies its own gap; suppress inherited sibling
+     margins so every adjacent image gets exactly one consistent gutter. */
+  body.project-page.secondary-page:not(.more-of-my-work) .project-details .project-image-container > .project-image + .project-image {
+    margin-top: 0 !important;
+  }
+
   body.project-page.secondary-page:not(.more-of-my-work) .project-footer-navigation .project-page-navigation {
     gap: 0;
     padding: 0;
@@ -6359,5 +6739,22 @@ body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-t
 
   .home-page .portfolio .project-card-stack.project-grid-enabled {
     gap: 2.6rem;
+  }
+}
+
+/* Match the one-column project thumbnail width and reduce the supporting line in proportion. */
+@media (max-width: 700px) {
+  .home-page .hero-name {
+    margin-right: 1rem !important;
+    margin-left: 1rem !important;
+  }
+
+  .home-page .hero-headline-wrapper {
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+  }
+
+  .home-page .hero-headline-wrapper .hero-headline {
+    font-size: clamp(0.6rem, calc(3.25vw - 1px), 1.36rem) !important;
   }
 }
