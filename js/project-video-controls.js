@@ -6,7 +6,11 @@
 
     const sendToPlayer = (method, value) => {
       if (!iframe.contentWindow) return;
-      iframe.contentWindow.postMessage({ method, value }, "https://player.vimeo.com");
+      // Vimeo's iframe API expects a JSON message, rather than a JavaScript object.
+      iframe.contentWindow.postMessage(
+        JSON.stringify({ method, value }),
+        "https://player.vimeo.com"
+      );
     };
 
     const setMuted = (muted) => {
@@ -20,7 +24,10 @@
     };
 
     iframe.addEventListener("load", () => setMuted(true), { once: true });
-    toggle.addEventListener("click", () => setMuted(container.dataset.muted !== "false"));
+    toggle.addEventListener("click", () => {
+      // The video starts muted; each tap switches between muted and audible.
+      setMuted(container.dataset.muted === "false");
+    });
     setMuted(true);
   };
 
