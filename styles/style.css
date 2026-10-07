@@ -3297,6 +3297,11 @@ body.error-page .project-image img {
   padding-right: var(--padding-medium);
 }
 
+/* Give the About page content a little more space below the navigation. */
+body.about-page .about-grid {
+  padding-top: 3.25rem;
+}
+
 @media (min-width: 1000px) {
   .portrait-img-desktop-shift {
     margin-left: 0.7rem; /* adjust as needed */
@@ -6003,7 +6008,7 @@ body.project-page.secondary-page:not(.more-of-my-work) .project-page-navigation 
   position: static !important;
   width: 100%;
   margin: 0;
-  color: var(--color-cream) !important;
+  color: var(--color-blue) !important;
   font-family: "Lexend", sans-serif;
   font-size: 1.42rem;
   font-weight: 300;
@@ -6088,6 +6093,11 @@ body.project-page.secondary-page:not(.more-of-my-work) .project-page-navigation 
 /* Footer rules mirror the compact navigation's cream dividers. */
 .footer-global {
   border-top: 2px solid #fffcee !important;
+}
+
+/* Footer section titles share the portfolio's blue accent site-wide. */
+.footer-global h2 {
+  color: var(--color-blue) !important;
 }
 
 @media (min-width: 1001px) {
