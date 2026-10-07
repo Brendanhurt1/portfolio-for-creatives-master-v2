@@ -6100,6 +6100,11 @@ body.project-page.secondary-page:not(.more-of-my-work) .project-page-navigation 
   color: var(--color-blue) !important;
 }
 
+/* Preserve blue footer section titles when the home-page light theme is active. */
+html[data-theme="light"] body.home-page .footer-global h2 {
+  color: var(--color-blue) !important;
+}
+
 @media (min-width: 1001px) {
   .footer-global {
     column-gap: 0;
