@@ -6095,13 +6095,13 @@ body.project-page.secondary-page:not(.more-of-my-work) .project-page-navigation 
   border-top: 2px solid #fffcee !important;
 }
 
-/* Footer section titles share the portfolio's blue accent site-wide. */
-.footer-global h2 {
+/* Footer section titles use their own accent class rather than the global h2 token. */
+.footer-header {
   color: var(--color-blue) !important;
 }
 
 /* Preserve blue footer section titles when the home-page light theme is active. */
-html[data-theme="light"] body.home-page .footer-global h2 {
+html[data-theme="light"] body.home-page .footer-header {
   color: var(--color-blue) !important;
 }
 
