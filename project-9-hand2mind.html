@@ -30,6 +30,7 @@
     <script src="./js/custom-cursor.js" defer></script>
     <script src="./js/project-layout.js" defer></script>
     <script src="./js/project-scroll-control.js" defer></script>
+    <script src="./js/project-video-controls.js" defer></script>
     <!-- FAVICONS -->
     <link
       rel="icon"
@@ -113,7 +114,10 @@
       </div>
     </header>
     <div class="project-wrapper">
-      <aside class="project-aside">
+      <div class="project-coming-soon" role="status">
+        <p>Coming Soon</p>
+      </div>
+      <aside class="project-aside" hidden>
         <div class="project-info border-right">
           <h1 class="project-title">Prog Rock Odyssey</h1>
           <p class="project-description">
@@ -145,7 +149,7 @@
           <div class="tag">Hypothetical Concept</div>
         </div>
       </aside>
-      <main class="project-details">
+      <main class="project-details" hidden>
         <div class="section-container border top"></div>
 
         <div class="project-image-container border">
@@ -194,7 +198,7 @@
           >
             <div class="project-video-container">
               <iframe
-                src="https://player.vimeo.com/video/1133239322?h=share&autoplay=0&title=0&byline=0&portrait=0"
+                src="https://player.vimeo.com/video/1133239322?h=share&autoplay=1&muted=1&controls=0&loop=1&playsinline=1&dnt=1&api=1&background=1&title=0&byline=0&portrait=0"
                 class="responsive-iframe video-phone"
                 allow="autoplay; fullscreen; picture-in-picture"
                 title="prog rock odyssey adobe aero preview"
@@ -209,7 +213,7 @@
           >
             <div class="project-video-container">
               <iframe
-                src="https://player.vimeo.com/video/1128322700?h=share&autoplay=0&title=0&byline=0&portrait=0"
+                src="https://player.vimeo.com/video/1128322700?h=share&autoplay=1&muted=1&controls=0&loop=1&playsinline=1&dnt=1&api=1&background=1&title=0&byline=0&portrait=0"
                 class="responsive-iframe video-phone"
                 allow="autoplay; fullscreen; picture-in-picture"
                 title="prog rock odyssey social media promotional video"

@@ -23,12 +23,13 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="./styles/style.css?v=20261007" />
+    <link rel="stylesheet" href="./styles/style.css?v=20261019" />
     <script src="./js/header-visibility.js" defer></script>
     <script src="./js/ambient-ribbons.js" defer></script>
     <script src="./js/custom-cursor.js" defer></script>
     <script src="./js/project-layout.js" defer></script>
     <script src="./js/project-scroll-control.js" defer></script>
+    <script src="./js/project-video-controls.js" defer></script>
     <!-- FAVICONS -->
     <link
       rel="icon"
@@ -127,7 +128,25 @@
             free event collecting stamps at key spots for a keepsake and a
             prize. The campaign required a stamp card for the event as well as
             stamp booths, and stamp stations, with a social media campaign to
-            tie it all together.
+            tie it all together.      Stamping stations are placed at key businesses, while heritage homes
+          have special plaques. Weatherproof booths on nearby corners handle the
+          stamps, respecting homeowners’ privacy.
+              After stamping, staff share each home’s history, allowing visitors to
+          appreciate it without crowding or blocking the yard.        The social media reel brings Strathcona’s history to life, featuring
+          preserved heritage and figures like Nora Hendrix’s house—Jimi
+          Hendrix’s grandmother, where Jimi once spent his summers.
+           The main character was illustrated in Illustrator and animated in
+          After Effects, where refining the walk cycle taught me the essentials
+          of motion design.       While the front features the stamp card and coupon, the back
+            features instructions leading the user through the neighbourhood
+            without revealing too much. Even if you get lost, you could always
+            pull out your phone. However, the hope is that this activity gives
+            you an opportunity to disconnect for a little while and smell the
+            roses.    Inspired by layered stamps seen in shrines within Japan, the stamp
+          card is designed so that whatever route the user chooses to take, they
+          can fill out the stamp card, creating a representation of the
+          neighbourhood. Each one of the stamps is an illustrative
+          representation of every location they visit.
           </p>
 
           <!-- Nest the bold paragraph inside project-info -->
@@ -154,40 +173,16 @@
       <main class="project-details">
         <div class="section-container border top"></div>
 
-        <div class="project-image-container">
-          <figure class="project-image">
-            <img
-              src="assets/strathcona/strathcona-photo.jpeg"
-              width="1500"
-              height="1125"
-              loading="lazy"
-              alt="Describe your project"
-            />
-          </figure>
-          <figure class="project-image no-border">
-            <img
-              src="assets/strathcona/strathcona-assets/strathcona-logo.png"
-              width="1500"
-              height="1025"
-              loading="lazy"
-              alt="strathcona post brand logo"
-            />
-          </figure>
-        </div>
-        <p class="project-description-one-column project-description-subtitle">
-          i. A logo that tells a story
-        </p>
-        <p class="project-description-one-column">
-          The logo is a rustic, simplified take on the heritage plaques found on
-          Strathcona’s homes. Its clean, yet rugged design reflects the
-          neighbourhood’s history while capturing its gritty yet charming
-          character.
-        </p>
 
-        <div class="section-container">
+     
+
+        <div class="section-container" data-keep-media-pair="true">
           <div class="section-item image-col">
-            <div class="project-image-container">
-              <figure class="project-image" style="width: 100%; display: flex">
+            <div
+              class="project-image-container project-strathcona-stamp-card-pair"
+              style="display: flex !important; flex-flow: row nowrap !important; align-items: flex-start; gap: var(--project-editorial-gap);"
+            >
+              <figure class="project-image" style="display: flex; flex: 1 1 0; width: 0 !important">
                 <img
                   src="assets/strathcona/gifs-frames-stamp-card/strathcona-stamp-card-filling-outt.gif"
                   width="1315"
@@ -198,106 +193,26 @@
                 />
               </figure>
 
-              <figure class="project-image">
+              <figure class="project-image" style="flex: 1 1 0; width: 0 !important">
                 <img
-                  src="assets/strathcona/strathcona-assets/strathcona-booth-assets/strathcona-booth-stamp-station.png"
-                  width="1500"
-                  height="500"
+                  src="assets/strathcona/strathcona-assets/stamp-card-back.jpg"
+                  width="1890"
+                  height="2160"
                   loading="lazy"
-                  alt="strathcona post stamp booth station"
+                  alt="Strathcona Post stamp card back"
                 />
               </figure>
             </div>
+
+    
           </div>
         </div>
 
-        <p class="project-description-one-column project-description-subtitle">
-          ii. Simple Stamping Stations
-        </p>
-        <p class="project-description-one-column">
-          Inspired by layered stamps seen in shrines within Japan, the stamp
-          card is designed so that whatever route the user chooses to take, they
-          can fill out the stamp card, creating a representation of the
-          neighbourhood. Each one of the stamps is an illustrative
-          representation of every location they visit.
-        </p>
-
         <div class="project-image-container">
-          <figure class="project-image">
-            <img
-              src="assets/strathcona/strathcona-assets/strathcona-post-stamp-card-mockup-front.jpg"
-              width="1200"
-              height="1500"
-              loading="lazy"
-              alt="strathcona post stamp card front"
-            />
-          </figure>
-          <figure class="project-image">
-            <img
-              src="assets/strathcona/strathcona-assets/strathcona-post-stamp-card-mockup-back.jpg"
-              width="1200"
-              height="1500"
-              loading="lazy"
-              alt="strathcona post stamp card back"
-            />
-          </figure>
-        </div>
 
-        <div class="section-container">
-          <p
-            class="project-description-one-column project-description-subtitle"
-          >
-            iii. Stamp Cards
-          </p>
-          <p class="project-description-one-column">
-            While the front features the stamp card and coupon, the back
-            features instructions leading the user through the neighbourhood
-            without revealing too much. Even if you get lost, you could always
-            pull out your phone. However, the hope is that this activity gives
-            you an opportunity to disconnect for a little while and smell the
-            roses.
-          </p>
-
-          <div class="section-item col-2"></div>
-        </div>
-        <div class="project-image-container">
-          <!-- Left side: Video with vertical padding -->
-          <figure
-            class="project-image border section-item col-2"
-            style="flex: 1; width: auto; margin-right: 1rem"
-          >
-            <div class="project-video-container">
-              <iframe
-                src="https://player.vimeo.com/video/1128288099?h=share&autoplay=0&title=0&byline=0&portrait=0"
-                class="responsive-iframe video-phone"
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowfullscreen
-                title="West Point Brewing Social Media promotional motion Reel"
-              ></iframe>
-            </div>
-          </figure>
-
-          <!-- Right side: Text -->
-          <div class="section-item col-2" style="flex: 1.25; width: auto"></div>
-        </div>
-        <p class="project-description-one-column project-description-subtitle">
-          iv. Social Media
-        </p>
-        <p class="project-description-one-column">
-          The social media reel brings Strathcona’s history to life, featuring
-          preserved heritage and figures like Nora Hendrix’s house—Jimi
-          Hendrix’s grandmother, where Jimi once spent his summers.
-        </p>
-        <p class="project-description-one-column">
-          The main character was illustrated in Illustrator and animated in
-          After Effects, where refining the walk cycle taught me the essentials
-          of motion design.
-        </p>
-
-        <div class="project-image-container">
           <figure class="project-image top border no-border">
             <img
-              src="assets/strathcona/strathcona-assets/strathcona-booth-assets/strathcona-booth-transparent.png"
+              src="assets/strathcona/strathcona-booth.png"
               width="744"
               height="685"
               loading="lazy"
@@ -306,18 +221,45 @@
           </figure>
         </div>
 
-        <p class="project-description-one-column project-description-subtitle">
-          v. Booths
-        </p>
-        <p class="project-description-one-column">
-          Stamping stations are placed at key businesses, while heritage homes
-          have special plaques. Weatherproof booths on nearby corners handle the
-          stamps, respecting homeowners’ privacy.
-        </p>
-        <p class="project-description-one-column">
-          After stamping, staff share each home’s history, allowing visitors to
-          appreciate it without crowding or blocking the yard.
-        </p>
+        <div class="project-image-container project-strathcona-social-row">
+          <figure class="project-image">
+            <img
+              src="assets/strathcona/strathcona-photo-2.jpeg"
+              width="2413"
+              height="3438"
+              loading="lazy"
+              alt="Strathcona neighbourhood photograph"
+            />
+          </figure>
+
+          <figure class="project-image">
+            <div class="project-video-container">
+              <iframe
+                src="https://player.vimeo.com/video/1128288099?h=share&autoplay=1&muted=1&controls=0&loop=1&playsinline=1&dnt=1&api=1&background=1&title=0&byline=0&portrait=0"
+                class="responsive-iframe video-phone"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowfullscreen
+                title="Strathcona Post social media reel"
+              ></iframe>
+            </div>
+          </figure>
+
+          <div class="project-content-copy">
+            <p class="project-description-one-column project-description-subtitle">
+              ii. Simple Stamping Stations
+            </p>
+            <p class="project-description-one-column">
+              Inspired by layered stamps seen in shrines within Japan, the stamp
+              card is designed so that whatever route the user chooses to take, they
+              can fill out the stamp card, creating a representation of the
+              neighbourhood. Each one of the stamps is an illustrative
+              representation of every location they visit.
+            </p>
+          </div>
+        </div>
+
+
+   
       </main>
     </div>
     <ul class="footer-global">

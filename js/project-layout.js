@@ -17,7 +17,10 @@
 
     // Miliano's deliberately begins with a complete two-image feature row.
     // Keep both figures together instead of promoting the first one as intro media.
-    if (firstMediaContainer.classList.contains("project-milianos-menu-media-pair")) return;
+    if (
+      firstMediaContainer.classList.contains("project-milianos-menu-media-pair") ||
+      firstMediaContainer.dataset.keepMediaPair === "true"
+    ) return;
 
     const firstFigure = firstMediaContainer.matches("figure.project-image")
       ? firstMediaContainer

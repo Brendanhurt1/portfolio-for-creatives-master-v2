@@ -5463,6 +5463,17 @@ body.project-1-milianos.project-page .project-details img {
   border-radius: 0.6rem;
 }
 
+/* Match the established project-media keyline on Frank's packaging artwork. */
+body.project-5-franks.project-page .franks-packaging-image {
+  overflow: hidden;
+  border: 2px solid var(--color-cream);
+  border-radius: 0.6rem;
+}
+
+body.project-5-franks.project-page .franks-packaging-image img {
+  border-radius: inherit;
+}
+
 body.project-page.secondary-page:not(.more-of-my-work) .project-description-one-column,
 body.project-page.secondary-page:not(.more-of-my-work) .project-description,
 body.project-page.secondary-page:not(.more-of-my-work) .animated-text-group {
@@ -6349,6 +6360,55 @@ body.project-page.secondary-page:not(.more-of-my-work) .project-footer-navigatio
   opacity: 0.5 !important;
 }
 
+/* Keep the interaction colour within each social mark, not its 50px link area. */
+.footer-global .footer-socials-list .footer-item a {
+  background: var(--color-cream) !important;
+  -webkit-mask-position: center !important;
+  -webkit-mask-size: contain !important;
+  -webkit-mask-repeat: no-repeat !important;
+  mask-position: center !important;
+  mask-size: contain !important;
+  mask-repeat: no-repeat !important;
+}
+
+.footer-global .footer-socials-list .footer-item:nth-child(1) a {
+  -webkit-mask-image: url("../assets/socials/instagram-icon.svg") !important;
+  mask-image: url("../assets/socials/instagram-icon.svg") !important;
+}
+
+.footer-global .footer-socials-list .footer-item:nth-child(2) a {
+  -webkit-mask-image: url("../assets/socials/linkedin-icon.svg") !important;
+  mask-image: url("../assets/socials/linkedin-icon.svg") !important;
+}
+
+.footer-global .footer-socials-list .footer-item:nth-child(3) a {
+  -webkit-mask-image: url("../assets/socials/behance-icon.svg") !important;
+  mask-image: url("../assets/socials/behance-icon.svg") !important;
+}
+
+.footer-global .footer-socials-list .footer-item .social-icon {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.footer-global .footer-socials-list .footer-item a:hover,
+.footer-global .footer-socials-list .footer-item a:focus-visible {
+  background-color: rgba(var(--color-blue-rgb), 0.5) !important;
+}
+
+/* Project pages set generic descendants transparent; restore the social mark fill only. */
+body.project-page.secondary-page:not(.more-of-my-work) .footer-global .footer-socials-list .footer-item a {
+  background-color: var(--color-cream) !important;
+}
+
+body.project-page.secondary-page:not(.more-of-my-work) .footer-global .footer-socials-list .footer-item a:hover,
+body.project-page.secondary-page:not(.more-of-my-work) .footer-global .footer-socials-list .footer-item a:focus-visible {
+  background-color: rgba(var(--color-blue-rgb), 0.5) !important;
+}
+
 /* Project-page theme overrides must not suppress the shared footer-link hover state. */
 body.project-page.secondary-page:not(.more-of-my-work) .footer-global a:hover,
 body.project-page.secondary-page:not(.more-of-my-work) .footer-global a:focus-visible {
@@ -6357,6 +6417,42 @@ body.project-page.secondary-page:not(.more-of-my-work) .footer-global a:focus-vi
 
 body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-title {
   color: var(--color-blue) !important;
+}
+
+/* Placeholder state for project pages that are not yet ready to publish. */
+.project-page .project-coming-soon {
+  display: grid;
+  width: 100%;
+  min-height: min(50vh, 34rem);
+  padding: clamp(3rem, 8vw, 8rem) clamp(1.5rem, 6vw, 8rem);
+  place-items: center;
+  color: var(--color-blue);
+  font-family: var(--font-family-project-title);
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.project-page .project-coming-soon p {
+  margin: 0;
+  font-family: var(--font-family-project-title) !important;
+  font-size: inherit !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.06em !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+}
+
+body.project-page.secondary-page .project-wrapper > .project-coming-soon p {
+  color: var(--color-blue) !important;
+}
+
+body.project-page.secondary-page .project-wrapper > .project-aside[hidden],
+body.project-page.secondary-page .project-wrapper > .project-details[hidden] {
+  display: none !important;
 }
 
 /* Homepage R easter egg: an invisible counter hotspot and a blue DVD-style logo. */
@@ -6416,8 +6512,204 @@ body.project-2-doze.project-page .project-details .project-video-container {
   overflow: hidden;
 }
 
-/* Doze's motion piece plays quietly by default; this is its sole player control. */
-body.project-2-doze.project-page .project-video-sound-toggle {
+/* Give West Point Brewing and Strathcona imagery the shared white project keyline. */
+body:is(.project-6-brewery, .project-7-strathcona).project-page .project-details img {
+  box-sizing: border-box;
+  border: 2px solid #fff;
+  border-radius: 0.6rem;
+}
+
+body:is(.project-4-tripleos, .project-6-brewery, .project-7-strathcona).project-page .project-details :is(.project-video-container, .vimeo-gif-wrapper) {
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 2px solid #fff;
+  border-radius: 0.6rem;
+}
+
+/* The West Point packaging motion is a landscape partner to its mockup. */
+body.project-6-brewery.project-page .brewery-packaging-motion-pair {
+  --brewery-video-frame-left-trim: 0%;
+  --brewery-video-frame-right-trim: 24%;
+  --brewery-video-frame-offset: -35.4%;
+  --brewery-video-content-offset: -12%;
+}
+
+body.project-6-brewery.project-page .brewery-packaging-motion-pair .project-video-container {
+  width: 100%;
+  height: auto;
+  padding-top: 0;
+  aspect-ratio: 16 / 9;
+  margin: 0 !important;
+  border: 0;
+  border-radius: 0;
+  /* Trim both frame edges without scaling the video or changing its height. */
+  clip-path: inset(0 var(--brewery-video-frame-right-trim) 0 var(--brewery-video-frame-left-trim) round 0.6rem);
+}
+
+/* Draw the keyline around the visible crop, rather than the wider Vimeo element. */
+body.project-6-brewery.project-page .brewery-packaging-motion-pair .project-video-container::after {
+  content: "";
+  position: absolute;
+  inset: 0 var(--brewery-video-frame-right-trim) 0 var(--brewery-video-frame-left-trim);
+  z-index: 3;
+  box-sizing: border-box;
+  border: 2px solid #fff;
+  border-radius: 0.6rem;
+  pointer-events: none;
+}
+
+body.project-6-brewery.project-page .brewery-packaging-motion-pair .project-video-container iframe {
+  width: 100% !important;
+  height: 100% !important;
+  aspect-ratio: auto;
+  left: var(--brewery-video-content-offset);
+}
+
+body.project-6-brewery.project-page .brewery-packaging-motion-pair .project-video-sound-toggle {
+  right: calc(var(--brewery-video-frame-right-trim) + 0.65rem);
+}
+
+/* The Strathcona stamp-card front motion and back design are a paired row. */
+@media (min-width: 601px) {
+  body.project-7-strathcona.project-page.secondary-page:not(.more-of-my-work) .project-details .project-image-container.project-strathcona-stamp-card-pair {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    align-items: start;
+    gap: var(--project-editorial-gap);
+  }
+
+  body.project-7-strathcona.project-page.secondary-page:not(.more-of-my-work) .project-details .project-image-container.project-strathcona-stamp-card-pair > .project-image {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+}
+
+/* Keep the final Strathcona motion reel and its explanation together. */
+@media (min-width: 601px) {
+  body.project-7-strathcona.project-page.secondary-page:not(.more-of-my-work) .project-details .project-image-container.project-strathcona-social-row {
+    display: grid !important;
+    /* Photo and reel share a height; the supporting text is deliberately narrower. */
+    grid-template-columns: minmax(0, 0.702443fr) minmax(0, 0.5625fr) minmax(0, 0.5625fr) !important;
+    align-items: start;
+    gap: var(--project-editorial-gap);
+  }
+
+  body.project-7-strathcona.project-page.secondary-page:not(.more-of-my-work) .project-details .project-strathcona-social-row > .project-image,
+  body.project-7-strathcona.project-page.secondary-page:not(.more-of-my-work) .project-details .project-strathcona-social-row > .project-content-copy {
+    width: 100% !important;
+    min-width: 0;
+    margin: 0 !important;
+  }
+
+  body.project-7-strathcona.project-page.secondary-page:not(.more-of-my-work) .project-details .project-strathcona-social-row > .project-content-copy {
+    grid-column: auto !important;
+  }
+
+  body.project-7-strathcona.project-page.secondary-page:not(.more-of-my-work) .project-details .project-strathcona-social-row .project-video-container {
+    width: 100%;
+    height: auto;
+    padding-top: 0;
+    aspect-ratio: 9 / 16;
+    margin: 0 !important;
+  }
+
+  body.project-7-strathcona.project-page.secondary-page:not(.more-of-my-work) .project-details .project-strathcona-social-row iframe.video-phone {
+    width: 100% !important;
+    height: 100% !important;
+    aspect-ratio: auto;
+  }
+
+  body.project-7-strathcona.project-page.secondary-page:not(.more-of-my-work) .project-details .project-strathcona-social-row .project-description-one-column {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 0 1rem !important;
+    padding-right: 0;
+  }
+}
+
+/* Pair the bottle still with the portrait reel at one shared desktop height. */
+@media (min-width: 1001px) {
+  body.project-6-brewery.project-page.secondary-page:not(.more-of-my-work) .project-details .brewery-bottle-motion-pair {
+    /* The cropped bottle still and 9:16 reel share a height; the copy matches the reel width. */
+    grid-template-columns: minmax(0, 0.935828877fr) minmax(0, 0.5625fr) minmax(0, 0.5625fr) !important;
+    align-items: start;
+  }
+
+  body.project-6-brewery.project-page.secondary-page:not(.more-of-my-work) .project-details .brewery-bottle-motion-pair .project-image,
+  body.project-6-brewery.project-page.secondary-page:not(.more-of-my-work) .project-details .brewery-bottle-motion-pair img,
+  body.project-6-brewery.project-page.secondary-page:not(.more-of-my-work) .project-details .brewery-bottle-motion-pair .project-video-container,
+  body.project-6-brewery.project-page.secondary-page:not(.more-of-my-work) .project-details .brewery-bottle-motion-pair iframe.video-phone {
+    width: 100% !important;
+    height: auto;
+    margin: 0 !important;
+  }
+
+  body.project-6-brewery.project-page.secondary-page:not(.more-of-my-work) .project-details .brewery-bottle-motion-pair .project-video-container {
+    padding-top: 0;
+    aspect-ratio: 9 / 16;
+  }
+
+  body.project-6-brewery.project-page.secondary-page:not(.more-of-my-work) .project-details .brewery-bottle-motion-pair iframe.video-phone {
+    height: 100% !important;
+    aspect-ratio: auto;
+  }
+
+  body.project-6-brewery.project-page.secondary-page:not(.more-of-my-work) .project-details .brewery-bottle-motion-copy,
+  body.project-6-brewery.project-page.secondary-page:not(.more-of-my-work) .project-details .brewery-bottle-motion-copy .project-description-one-column {
+    width: 100% !important;
+    max-width: none !important;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* This is the third intentional grid item, not an odd media item to span below. */
+  body.project-6-brewery.project-page.secondary-page:not(.more-of-my-work) .project-details .brewery-bottle-motion-pair > .brewery-bottle-motion-copy {
+    grid-column: auto !important;
+  }
+
+  body.project-6-brewery.project-page.secondary-page:not(.more-of-my-work) .project-details .brewery-bottle-motion-copy .project-description-one-column {
+    margin-bottom: 1rem !important;
+  }
+
+  body.project-6-brewery.project-page.secondary-page:not(.more-of-my-work) .project-details .brewery-bottle-motion-copy .project-description-one-column:last-child {
+    margin-bottom: 0 !important;
+  }
+}
+
+@media (min-width: 1001px) {
+  /* Keep the mockup at its original, uncropped proportions. */
+  body.project-6-brewery.project-page .brewery-packaging-motion-pair > .project-image:nth-child(2) {
+    width: auto !important;
+    margin: 0 !important;
+    overflow: visible;
+    aspect-ratio: auto;
+    transform: translateX(var(--brewery-video-frame-offset));
+  }
+
+  body.project-6-brewery.project-page .brewery-packaging-motion-pair > .project-image:nth-child(2) img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain;
+  }
+}
+
+@media (min-width: 1001px) {
+  body.project-6-brewery.project-page .brewery-packaging-motion-pair {
+    /* Both original-proportion frames scale together and meet the row edges. */
+    grid-template-columns: 67.5% 45.8% !important;
+    justify-content: start !important;
+  }
+}
+
+/* Project motion pieces play muted by default; this is their sole player control. */
+body.project-page .project-video-container[data-autoplay-muted],
+body.project-page .vimeo-gif-wrapper[data-autoplay-muted] {
+  position: relative;
+  overflow: hidden;
+}
+
+body.project-page .project-video-sound-toggle {
   position: absolute;
   right: 0.65rem;
   bottom: 0.65rem;
@@ -6427,32 +6719,75 @@ body.project-2-doze.project-page .project-video-sound-toggle {
   height: 2.4rem;
   padding: 0;
   place-items: center;
-  border: 2px solid var(--color-cream);
+  border: 2px solid #fff;
   border-radius: 50%;
-  background: var(--color-ink);
-  color: var(--color-cream);
+  background: #fff;
+  color: #1c1b21;
   cursor: pointer;
   transition: background-color 180ms ease, color 180ms ease;
 }
 
-body.project-2-doze.project-page .project-video-sound-toggle svg {
+body.project-page .project-video-sound-toggle svg {
   width: 1.1rem;
   height: 1.1rem;
 }
 
-body.project-2-doze.project-page .project-video-container[data-muted="false"] .project-video-sound-slash {
+body.project-page .project-video-container[data-muted="false"] .project-video-sound-slash,
+body.project-page .vimeo-gif-wrapper[data-muted="false"] .project-video-sound-slash {
   display: none;
 }
 
-body.project-2-doze.project-page .project-video-sound-toggle:hover,
-body.project-2-doze.project-page .project-video-sound-toggle:focus-visible {
+body.project-page .project-video-sound-toggle:hover,
+body.project-page .project-video-sound-toggle:focus-visible {
   background: rgba(var(--color-blue-rgb), 0.5);
-  color: var(--color-cream);
+  color: #fff;
 }
 
-body.project-2-doze.project-page .project-video-sound-toggle:focus-visible {
-  outline: 2px solid var(--color-cream);
+body.project-page .project-video-sound-toggle:focus-visible {
+  outline: 2px solid #fff;
   outline-offset: 0.2rem;
+}
+
+/* Triple O's neon motion work uses a dark glyph against its bright footage. */
+body.project-4-tripleos.project-page .project-video-sound-toggle {
+  border-color: #1c1b21 !important;
+  background: #fff !important;
+  color: #1c1b21 !important;
+}
+
+body.project-4-tripleos.project-page .project-video-sound-toggle:hover,
+body.project-4-tripleos.project-page .project-video-sound-toggle:focus-visible {
+  background: #fff !important;
+  color: #1c1b21 !important;
+}
+
+body.project-4-tripleos.project-page .project-video-sound-toggle svg,
+body.project-4-tripleos.project-page .project-video-sound-toggle svg path {
+  color: #1c1b21 !important;
+}
+
+body.project-4-tripleos.project-page .project-video-sound-toggle svg path:not(.project-video-sound-slash) {
+  fill: #1c1b21 !important;
+}
+
+body.project-4-tripleos.project-page .project-video-sound-toggle .project-video-sound-slash {
+  stroke: #1c1b21 !important;
+}
+
+/* The campaign opener is landscape; keep it independent of the vertical reel sizing. */
+body.project-4-tripleos.project-page .project-triple-wide-video {
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
+  height: auto !important;
+  padding-top: 0 !important;
+  aspect-ratio: 16 / 9 !important;
+}
+
+body.project-4-tripleos.project-page .project-triple-wide-video iframe {
+  width: 100% !important;
+  height: 100% !important;
+  aspect-ratio: auto !important;
 }
 
 /* Brand-guide projects use a sentence-case editorial subtitle in place of the large title. */
@@ -6504,26 +6839,26 @@ body.project-1-milianos .project-aside .project-intro-subtitle {
   }
 }
 
-/* Brand-guide projects open with a standalone editorial block, followed by media. */
+/* Every project opens with a standalone editorial block, followed by media. */
 @media (min-width: 1001px) {
-  /* Do not use the shared text/image split for this project’s opening. */
-  body:is(.project-1-milianos, .project-2-doze).project-page.secondary-page:not(.more-of-my-work) .project-wrapper {
+  /* Keep the introduction in its own full-width row before the first media row. */
+  body.project-page.secondary-page:not(.more-of-my-work) .project-wrapper {
     display: block !important;
   }
 
   /* The complete introduction leads on its own before any media appears. */
-  body:is(.project-1-milianos, .project-2-doze).project-page.secondary-page:not(.more-of-my-work) .project-aside {
+  body.project-page.secondary-page:not(.more-of-my-work) .project-aside {
     width: 75% !important;
   }
 
   /* Let the opening copy use the entire three-quarter-width editorial column. */
-  body:is(.project-1-milianos, .project-2-doze).project-page.secondary-page:not(.more-of-my-work) .project-aside .project-info,
-  body:is(.project-1-milianos, .project-2-doze).project-page.secondary-page:not(.more-of-my-work) .project-aside .project-description,
-  body:is(.project-1-milianos, .project-2-doze).project-page.secondary-page:not(.more-of-my-work) .project-aside .animated-text-group {
+  body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-info,
+  body.project-page.secondary-page:not(.more-of-my-work) .project-aside .project-description,
+  body.project-page.secondary-page:not(.more-of-my-work) .project-aside .animated-text-group {
     max-width: none !important;
   }
 
-  body:is(.project-1-milianos, .project-2-doze).project-page.secondary-page:not(.more-of-my-work) .project-details {
+  body.project-page.secondary-page:not(.more-of-my-work) .project-details {
     display: flex !important;
     flex-direction: column;
     gap: var(--project-editorial-gap);
@@ -6531,9 +6866,8 @@ body.project-1-milianos .project-aside .project-intro-subtitle {
     margin-top: var(--project-editorial-gap);
   }
 
-  /* These projects use a standalone, vertical media sequence.  Let the
-     container own every row gutter so adjacent media can never touch. */
-  body:is(.project-1-milianos, .project-2-doze).project-page.secondary-page:not(.more-of-my-work) .project-details > :is(
+  /* The vertical media sequence owns every row gutter. */
+  body.project-page.secondary-page:not(.more-of-my-work) .project-details > :is(
     .project-intro-media,
     .project-image-container,
     .project-static-media-wrapper,
@@ -6543,9 +6877,11 @@ body.project-1-milianos .project-aside .project-intro-subtitle {
     margin: 0 !important;
   }
 
-  /* The Doze motion feature has a larger vertical video, followed by unrestricted copy. */
+  /* Keep the Doze snack mockup left of its motion feature, with the copy at right. */
   body.project-2-doze.project-page.secondary-page:not(.more-of-my-work) .project-doze-social-row {
-    grid-template-columns: minmax(0, 0.63fr) minmax(0, 1.37fr);
+    /* 2:3 mockup and 9:16 reel columns deliberately share one height. */
+    /* The media pair spans the same width as the wide image above; copy aligns below its neighbour. */
+    grid-template-columns: minmax(0, 0.915fr) minmax(0, 0.772fr) minmax(0, 1fr);
     align-items: start;
   }
 
@@ -6577,6 +6913,37 @@ body.project-1-milianos .project-aside .project-intro-subtitle {
 
   body.project-2-doze.project-page.secondary-page:not(.more-of-my-work) .project-details > .project-image-container + .project-doze-social-row {
     margin-top: 0 !important;
+  }
+
+  /* Triple O's pairs two vertical social reels with their supporting copy. */
+  body.project-4-tripleos.project-page.secondary-page:not(.more-of-my-work) .project-triple-social-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  body.project-4-tripleos.project-page.secondary-page:not(.more-of-my-work) .project-triple-social-row > .project-image,
+  body.project-4-tripleos.project-page.secondary-page:not(.more-of-my-work) .project-triple-social-row > .project-content-copy {
+    width: 100% !important;
+    min-width: 0;
+    margin: 0 !important;
+  }
+
+  body.project-4-tripleos.project-page.secondary-page:not(.more-of-my-work) .project-triple-social-row .project-video-container {
+    width: 100%;
+    height: auto;
+    padding-top: 0;
+    aspect-ratio: 9 / 16;
+    margin: 0 !important;
+  }
+
+  body.project-4-tripleos.project-page.secondary-page:not(.more-of-my-work) .project-triple-social-row iframe.video-phone {
+    width: 100% !important;
+    height: 100% !important;
+    aspect-ratio: auto;
+  }
+
+  body.project-4-tripleos.project-page.secondary-page:not(.more-of-my-work) .project-triple-social-row .project-description-one-column {
+    max-width: none !important;
   }
 
   /* Use one shared gutter in both directions across Miliano's image grid. */
@@ -6715,6 +7082,100 @@ body.project-1-milianos .project-aside .project-intro-subtitle {
     margin-top: 0 !important;
   }
 
+  /* Mobile project pages are one vertical media sequence. Let that sequence
+     own the gutter so legacy image and video margins cannot double a row gap. */
+  body.project-page.secondary-page:not(.more-of-my-work) .project-details {
+    display: flex !important;
+    flex-direction: column;
+    gap: var(--project-mobile-media-gap);
+  }
+
+  body.project-page.secondary-page:not(.more-of-my-work) .project-details > :is(
+    .project-intro-media,
+    .project-image-container,
+    .project-static-media-wrapper,
+    .project-content-row,
+    .section-container,
+    .vimeo-gif-wrapper
+  ) {
+    margin: 0 !important;
+  }
+
+  body.project-page.secondary-page:not(.more-of-my-work) .project-details :is(
+    .project-image-container,
+    .project-static-media-wrapper,
+    .project-content-row,
+    .section-container:has(.project-image, .project-static-media, .project-video-container)
+  ) {
+    display: flex !important;
+    flex-direction: column;
+    gap: var(--project-mobile-media-gap);
+  }
+
+  body.project-page.secondary-page:not(.more-of-my-work) .project-details :is(
+    .project-image-container,
+    .project-static-media-wrapper,
+    .project-content-row,
+    .section-container:has(.project-image, .project-static-media, .project-video-container)
+  ) > * {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  body.project-page.secondary-page:not(.more-of-my-work) .project-details :is(
+    .project-image-container,
+    .project-static-media-wrapper,
+    .project-content-row,
+    .section-container
+  ) :is(img, iframe, .project-video-container, .project-static-media, .vimeo-gif-wrapper) {
+    margin: 0 !important;
+  }
+
+  body.project-page.secondary-page:not(.more-of-my-work) .project-details > :is(
+    .project-intro-media,
+    .project-image-container,
+    .project-static-media-wrapper,
+    .project-content-row,
+    .section-container:has(.project-image, .project-static-media, .project-video-container)
+  ) + :is(
+    .project-intro-media,
+    .project-image-container,
+    .project-static-media-wrapper,
+    .project-content-row,
+    .section-container:has(.project-image, .project-static-media, .project-video-container)
+  ) {
+    margin-top: 0 !important;
+  }
+
+  body.project-page.secondary-page:not(.more-of-my-work) .project-details :is(
+    .project-image-container,
+    .project-static-media-wrapper,
+    .project-content-row,
+    .section-container:has(.project-image, .project-static-media, .project-video-container)
+  ) > :is(
+    .project-image,
+    .project-static-media,
+    .project-video-container,
+    .vimeo-gif-wrapper,
+    .project-content-copy,
+    .section-item,
+    .project-description,
+    .project-description-one-column,
+    .project-description-bold
+  ) + :is(
+    .project-image,
+    .project-static-media,
+    .project-video-container,
+    .vimeo-gif-wrapper,
+    .project-content-copy,
+    .section-item,
+    .project-description,
+    .project-description-one-column,
+    .project-description-bold
+  ) {
+    margin-top: 0 !important;
+  }
+
   body.project-page.secondary-page:not(.more-of-my-work) .project-footer-navigation .project-page-navigation {
     gap: 0;
     padding: 0;
@@ -6750,6 +7211,13 @@ body.project-1-milianos .project-aside .project-intro-subtitle {
   body .site-navigation > .nav-branding > li > .nav-branding-item {
     width: 100%;
     padding-inline: clamp(0.2rem, 1vw, 0.38rem) !important;
+    font-size: clamp(0.54rem, 2.35vw, 0.68rem) !important;
+    letter-spacing: 0.08em;
+  }
+
+  body .site-navigation .home-nav-logo-mark {
+    width: 1.75rem !important;
+    height: 1.2rem !important;
   }
 
   .home-page .portfolio .project-card-stack.project-grid-enabled {
