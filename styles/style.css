@@ -6512,6 +6512,31 @@ body.project-2-doze.project-page .project-details .project-video-container {
   overflow: hidden;
 }
 
+/* The secondary-packaging motion is a landscape companion to the snack image. */
+body.project-2-doze.project-page .project-doze-secondary-motion-row > .project-image {
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+}
+
+body.project-2-doze.project-page .project-doze-secondary-motion-row .project-video-container {
+  height: auto;
+  padding-top: 0;
+  aspect-ratio: 3 / 2;
+  margin: 0 !important;
+}
+
+body.project-2-doze.project-page .project-doze-secondary-motion-row .project-video-container iframe {
+  width: 100% !important;
+  height: 100% !important;
+  aspect-ratio: auto;
+}
+
+body.project-2-doze.project-page .project-doze-secondary-motion-row > .project-image > img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+}
+
 /* Give West Point Brewing and Strathcona imagery the shared white project keyline. */
 body:is(.project-6-brewery, .project-7-strathcona).project-page .project-details img {
   box-sizing: border-box;
@@ -6569,7 +6594,56 @@ body.project-6-brewery.project-page .brewery-packaging-motion-pair .project-vide
   right: calc(var(--brewery-video-frame-right-trim) + 0.65rem);
 }
 
+/* The opening landscape video fills the mobile row; its desktop crop is not needed here. */
+@media (max-width: 1000px) {
+  body.project-6-brewery.project-page .brewery-packaging-motion-pair {
+    --brewery-video-frame-left-trim: 0%;
+    --brewery-video-frame-right-trim: 0%;
+    --brewery-video-content-offset: 0%;
+  }
+}
+
 /* The Strathcona stamp-card front motion and back design are a paired row. */
+/* This pair is nested in a section wrapper, so opt it out of the generic
+   single-column gutter applied to both nested levels. Each card therefore
+   always fills its available row or column. */
+body.project-7-strathcona.project-page.secondary-page:not(.more-of-my-work) .project-details .section-container:has(.project-strathcona-stamp-card-pair),
+body.project-7-strathcona.project-page.secondary-page:not(.more-of-my-work) .project-details .section-container:has(.project-strathcona-stamp-card-pair) .section-item.image-col,
+body.project-7-strathcona.project-page.secondary-page:not(.more-of-my-work) .project-details .project-image-container.project-strathcona-stamp-card-pair {
+  width: 100% !important;
+  max-width: none !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+body.project-7-strathcona.project-page.secondary-page:not(.more-of-my-work) .project-details .project-strathcona-stamp-card-pair > .project-image {
+  position: relative;
+  overflow: visible;
+}
+
+body.project-7-strathcona.project-page.secondary-page:not(.more-of-my-work) .project-details .project-strathcona-stamp-card-pair .stamp-card-sticker {
+  position: absolute;
+  z-index: 2;
+  width: clamp(9rem, 23vw, 18rem) !important;
+  height: auto !important;
+  max-width: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  pointer-events: none;
+}
+
+body.project-7-strathcona.project-page.secondary-page:not(.more-of-my-work) .project-details .project-strathcona-stamp-card-pair .stamp-card-sticker--find {
+  top: -1.5%;
+  left: -1.5%;
+  transform: rotate(-7deg);
+}
+
+body.project-7-strathcona.project-page.secondary-page:not(.more-of-my-work) .project-details .project-strathcona-stamp-card-pair .stamp-card-sticker--explore {
+  top: -1.5%;
+  right: -1.5%;
+  transform: rotate(6deg);
+}
+
 @media (min-width: 601px) {
   body.project-7-strathcona.project-page.secondary-page:not(.more-of-my-work) .project-details .project-image-container.project-strathcona-stamp-card-pair {
     display: grid !important;
