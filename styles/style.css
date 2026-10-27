@@ -2818,7 +2818,8 @@ html {
   align-items: flex-start;
   gap: 1.5rem;
   justify-content: flex-start;
-  padding-bottom: 0;
+  padding-bottom: clamp(1.25rem, 2.5vw, 1.75rem);
+  padding-right: var(--homepage-content-right, clamp(1.5rem, 8vw, 8rem));
   padding-left: var(--hero-title-left, clamp(1.5rem, 8vw, 8rem));
   text-align: left;
   color: var(--color-cream);
@@ -2826,10 +2827,15 @@ html {
 
 .home-page .hero-headline-wrapper .hero-headline {
   margin-inline: 0;
+  max-width: none;
   font-size: 1.42rem;
   font-weight: 300;
   text-align: left;
   white-space: nowrap;
+  text-wrap: nowrap;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
   color: var(--color-cream);
 }
 
@@ -5077,6 +5083,7 @@ html:not([data-theme="light"]) .theme-switch:hover .theme-switch-track {
     max-width: none;
     font-size: clamp(0.823rem, 4.384vw, 0.93rem);
     line-height: 1.35;
+    white-space: normal;
   }
 
   .home-page .hero-actions {
@@ -5235,13 +5242,13 @@ html:not([data-theme="light"]) .theme-switch:hover .theme-switch-track {
 @media (min-width: 768px) {
   .home-page .hero-headline-wrapper {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    grid-template-areas: "headline contact";
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "headline";
     align-items: start;
-    column-gap: clamp(1.5rem, 5vw, 5rem);
+    column-gap: 0;
     row-gap: 1.5rem;
     box-sizing: border-box;
-    padding-right: clamp(1.5rem, 8vw, 8rem);
+    padding-right: var(--homepage-content-right, clamp(1.5rem, 8vw, 8rem));
   }
 
   .home-page .hero-headline-wrapper .hero-headline {
@@ -7314,6 +7321,13 @@ body.project-1-milianos .project-aside .project-intro-subtitle {
   }
 
   .home-page .hero-headline-wrapper .hero-headline {
-    font-size: clamp(0.6rem, calc(3.25vw - 1px), 1.36rem) !important;
+    font-size: clamp(0.6rem, calc(3vw - 1px), 1.36rem) !important;
+  }
+}
+
+/* Keep the supporting line within the title measure before tablet layouts begin to crowd it. */
+@media (min-width: 701px) and (max-width: 900px) {
+  .home-page .hero-headline-wrapper .hero-headline {
+    font-size: clamp(1rem, 2.6vw, 1.42rem);
   }
 }
