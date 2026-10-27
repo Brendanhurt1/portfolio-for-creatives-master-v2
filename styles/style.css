@@ -2765,6 +2765,7 @@ html {
 .tag-scroll-section {
   width: 100%;
   overflow: hidden;
+  padding-top: 1.5rem;
   padding-bottom: 3rem;
 }
 
@@ -6000,6 +6001,7 @@ body.project-page.secondary-page:not(.more-of-my-work) .project-page-navigation 
   display: flex !important;
   width: 100%;
   height: auto;
+  min-height: 0 !important;
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
@@ -7295,7 +7297,7 @@ body.project-1-milianos .project-aside .project-intro-subtitle {
   }
 
   .home-page .portfolio .project-card-stack.project-grid-enabled {
-    gap: 2.6rem;
+    gap: 1.3rem;
   }
 }
 
