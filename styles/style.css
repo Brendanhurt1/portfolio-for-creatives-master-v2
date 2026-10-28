@@ -7334,3 +7334,188 @@ body.project-1-milianos .project-aside .project-intro-subtitle {
     font-size: clamp(1rem, 2.6vw, 1.42rem);
   }
 }
+
+/* Standalone 404 scene: the navigation remains, while the missing page becomes the visual. */
+body.error-page .sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+body.error-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  overflow: hidden;
+  background: var(--color-ink) !important;
+}
+
+body.error-page .error-void,
+body.error-page .error-void * {
+  background-color: transparent !important;
+}
+
+body.error-page .error-void {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  flex: 1;
+  min-height: 0;
+  place-items: center;
+  overflow: hidden;
+  padding: clamp(1.5rem, 5vw, 5rem);
+  perspective: 80rem;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(var(--color-blue-rgb), 0.24), transparent 33rem),
+    linear-gradient(135deg, #24222c 0%, var(--color-ink) 54%, #121218 100%) !important;
+}
+
+body.error-page .error-void::before {
+  position: absolute;
+  inset: 8%;
+  z-index: -1;
+  border: 1px solid rgba(var(--color-cream-rgb), 0.18);
+  border-radius: 50%;
+  content: "";
+  box-shadow:
+    0 0 0 1.5rem rgba(var(--color-blue-rgb), 0.05),
+    0 0 5rem rgba(var(--color-blue-rgb), 0.22) inset;
+  transform: rotate(-14deg) skewY(5deg);
+  animation: error-void-orbit 12s linear infinite;
+}
+
+body.error-page .error-void__grid {
+  position: absolute;
+  inset: -30%;
+  z-index: -2;
+  opacity: 0.42;
+  background-image:
+    linear-gradient(rgba(var(--color-cream-rgb), 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--color-cream-rgb), 0.12) 1px, transparent 1px) !important;
+  background-size: 2.5rem 2.5rem !important;
+  mask-image: radial-gradient(ellipse, black 0%, transparent 64%);
+  transform: perspective(60rem) rotateX(67deg) translateY(20%);
+  transform-origin: center bottom;
+  animation: error-void-grid 9s linear infinite;
+}
+
+body.error-page .error-void__scene {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(88vw, 78rem);
+  transform-style: preserve-3d;
+  animation: error-void-scene 9s ease-in-out infinite;
+}
+
+body.error-page .error-void__digit {
+  position: relative;
+  z-index: 1;
+  display: block;
+  flex: 0 1 auto;
+  font-family: "Bogart", "Lexend", sans-serif;
+  font-size: clamp(8rem, 30vw, 32rem);
+  font-weight: 900;
+  line-height: 0.66;
+  letter-spacing: -0.16em;
+  color: var(--color-blue) !important;
+  -webkit-text-stroke: clamp(1px, 0.25vw, 4px) var(--color-cream);
+  text-shadow:
+    0.018em 0.025em 0 #203d77,
+    0.036em 0.05em 0 #182e5d,
+    0.054em 0.075em 0 #101d3b,
+    0.09em 0.12em 0.18em rgba(0, 0, 0, 0.55);
+  transform-style: preserve-3d;
+  animation: error-void-four 7s cubic-bezier(0.5, 0, 0.2, 1) infinite;
+}
+
+body.error-page .error-void__digit::before {
+  position: absolute;
+  z-index: -1;
+  color: #101d3b !important;
+  content: attr(data-depth);
+  inset: 0;
+  -webkit-text-stroke: clamp(1px, 0.25vw, 4px) #101d3b;
+  text-shadow: 0.1em 0.13em 0.2em rgba(0, 0, 0, 0.48);
+  transform: translate3d(-0.08em, 0.105em, -2rem);
+}
+
+body.error-page .error-void__digit--zero {
+  z-index: 2;
+  margin-inline: -0.015em;
+  color: var(--color-cream) !important;
+  -webkit-text-stroke-color: var(--color-blue);
+  text-shadow:
+    0.018em 0.025em 0 #a79f94,
+    0.036em 0.05em 0 #5c5860,
+    0.054em 0.075em 0 #262530,
+    0.09em 0.12em 0.18em rgba(0, 0, 0, 0.55);
+  animation-name: error-void-zero;
+  animation-delay: -2.1s;
+}
+
+body.error-page .error-void__digit--zero::before {
+  color: #262530 !important;
+  -webkit-text-stroke-color: #262530;
+}
+
+body.error-page .error-void__digit--last {
+  z-index: 0;
+  animation-delay: -4.35s;
+  animation-direction: reverse;
+}
+
+@keyframes error-void-scene {
+  0%, 100% { transform: rotateX(8deg) rotateY(-11deg) translateY(0); }
+  48% { transform: rotateX(-7deg) rotateY(12deg) translateY(-0.8rem); }
+}
+
+@keyframes error-void-four {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-5deg); }
+  18% { transform: translate3d(-0.06em, -0.05em, 1.5rem) rotate(7deg); }
+  53% { transform: translate3d(0.035em, 0.035em, 0.5rem) rotate(-8deg); }
+  76% { transform: translate3d(-0.02em, -0.02em, 1rem) rotate(2deg); }
+}
+
+@keyframes error-void-zero {
+  0%, 100% { transform: translate3d(0, 0, 1.5rem) rotate(4deg) scale(1.02); }
+  25% { transform: translate3d(0.04em, -0.045em, 2.5rem) rotate(-8deg) scale(0.96); }
+  62% { transform: translate3d(-0.035em, 0.025em, 1rem) rotate(9deg) scale(1.06); }
+}
+
+@keyframes error-void-orbit {
+  to { transform: rotate(346deg) skewY(5deg); }
+}
+
+@keyframes error-void-grid {
+  to { background-position: 0 2.5rem, 2.5rem 0; }
+}
+
+@media (max-width: 600px) {
+  body.error-page .error-void {
+    padding: 1.5rem 0.75rem;
+  }
+
+  body.error-page .error-void__scene {
+    width: 100%;
+  }
+
+  body.error-page .error-void__digit {
+    font-size: clamp(6.4rem, 31vw, 11rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.error-page .error-void::before,
+  body.error-page .error-void__grid,
+  body.error-page .error-void__scene,
+  body.error-page .error-void__digit {
+    animation: none;
+  }
+}
