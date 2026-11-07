@@ -6560,6 +6560,19 @@ body:is(.project-4-tripleos, .project-6-brewery, .project-7-strathcona).project-
   border-radius: 0.6rem;
 }
 
+/* Use the shared thin white keyline for every Hand2Mind and Bazoof media item. */
+body:is(.project-3-bazoof, .project-9-hand2mind).project-page .project-details :is(
+  .project-image > img,
+  .project-video-container,
+  .vimeo-gif-wrapper,
+  .project-bazoof-video-frame
+) {
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 2px solid #fff;
+  border-radius: 0.6rem;
+}
+
 /* The West Point packaging motion is a landscape partner to its mockup. */
 body.project-6-brewery.project-page .brewery-packaging-motion-pair {
   --brewery-video-frame-left-trim: 0%;
@@ -7517,5 +7530,77 @@ body.error-page .error-void__digit--last {
   body.error-page .error-void__scene,
   body.error-page .error-void__digit {
     animation: none;
+  }
+}
+
+/* Keep Bazoof's native video frames flush, without padding above or below. */
+body.project-3-bazoof.project-page .project-bazoof-video-row {
+  display: grid !important;
+  grid-template-columns: minmax(0, 125fr) minmax(0, 256fr);
+  align-items: start;
+  gap: var(--project-editorial-gap, 1.5rem);
+  height: auto;
+}
+
+body.project-3-bazoof.project-page .project-bazoof-video-row > .project-image {
+  width: auto !important;
+  height: auto !important;
+  min-width: 0;
+  margin: 0 !important;
+}
+
+body.project-3-bazoof.project-page .project-bazoof-video-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 83 / 60;
+  overflow: hidden;
+  background: #000;
+}
+
+body.project-3-bazoof.project-page .project-bazoof-video-frame--portrait {
+  /* Match the landscape frame height while preserving the portrait video's scale. */
+  aspect-ratio: 10375 / 15360;
+}
+
+body.project-3-bazoof.project-page .project-bazoof-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* The original columns make the portrait asset 1.3% taller. Crop only that
+   lower edge instead of changing either video's displayed scale. */
+body.project-3-bazoof.project-page .project-bazoof-video-frame--portrait .project-bazoof-video {
+  inset: 0 auto auto 0;
+  height: 101.32%;
+}
+
+@media (max-width: 1000px) {
+  body.project-3-bazoof.project-page .project-bazoof-video-row {
+    display: flex !important;
+    flex-direction: column;
+    height: auto;
+  }
+
+  body.project-3-bazoof.project-page .project-bazoof-video-row > .project-image {
+    flex: 0 0 auto;
+    height: auto !important;
+    width: 100% !important;
+  }
+
+  body.project-3-bazoof.project-page .project-bazoof-video-frame {
+    height: auto;
+    aspect-ratio: 83 / 60;
+  }
+
+  body.project-3-bazoof.project-page .project-bazoof-video-frame--portrait {
+    aspect-ratio: 2 / 3;
+  }
+
+  body.project-3-bazoof.project-page .project-bazoof-video-frame--portrait .project-bazoof-video {
+    inset: 0;
+    height: 100%;
   }
 }
